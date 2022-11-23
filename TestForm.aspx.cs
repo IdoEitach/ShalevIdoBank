@@ -11,8 +11,15 @@ namespace ShalevIdoBank
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Write(BLL.AccountService.GetBalance(1));
-            Response.Write(BLL.AccountService.GetTransactions(1).Rows);
+            var table = BLL.AccountService.GetTransactions(1);
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                for (int j = 0; j < table.Columns.Count; j++)
+                {
+                Response.Write(table.Rows[i][j].ToString()+"    ");
+                }
+            }
+     
         }
     }
 }
