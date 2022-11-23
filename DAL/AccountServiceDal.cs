@@ -13,7 +13,7 @@ namespace ShalevIdoBank.DAL
         // create public constructor
         public AccountServiceDal()
         {
-            this.connection = new SqlConnection(SQLHelper.connectionString);
+            this.connection = new SqlConnection(Database.connectionString);
             this.connection.Open();
         }
 
@@ -30,7 +30,8 @@ namespace ShalevIdoBank.DAL
             double res = (double)cmd.ExecuteScalar();
             return res;
         }
-         public DataTable GetTransactions(int accId)
+
+        public DataTable GetTransactions(int accId)
         {
 
             DataTable dataTable = new DataTable();
@@ -42,6 +43,7 @@ namespace ShalevIdoBank.DAL
             dataTable.Load(reader);
             return dataTable;
         }
+
         static public bool PayThatBill(int accCode)
         {
             throw new NotImplementedException();

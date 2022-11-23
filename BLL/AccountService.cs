@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShalevIdoBank.DAL;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -6,21 +7,26 @@ using System.Web;
 
 namespace ShalevIdoBank.BLL
 {
-    public class AccountService
+  public class AccountService
+  {
+    static public double GetBalance(int accId)
     {
-        static public double GetBalance(int accCode)
-        {
-            return DAL.AccountServiceDal.GetBalance(accCode);
-        }
-        static public DataTable GetTransactions(int accCode)
-        {
-            return DAL.AccountServiceDal.GetTransactions(accCode);
-
-        }
-        static public bool PayThatBill(int accCode)
-        {
-            return DAL.AccountServiceDal.PayThatBill(accCode);
-
-        }
+      var service = new AccountServiceDal();
+      var res = service.GetBalance(accId);
+      service.Dispose();
+      return res;
     }
+    static public DataTable GetTransactions(int accId)
+    {
+      var service = new AccountServiceDal();
+      var res = service.GetTransactions(accId);
+      service.Dispose();
+      return res;
+    }
+    static public bool PayThatBill(int accId)
+    {
+      return DAL.AccountServiceDal.PayThatBill(accId);
+
+    }
+  }
 }
