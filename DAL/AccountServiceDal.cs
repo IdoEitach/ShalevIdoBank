@@ -24,15 +24,23 @@ namespace ShalevIdoBank.DAL
 
         public double GetBalance(int accId)
         {
-            SqlCommand cmd = new SqlCommand("GetBalance", connection);
+            SqlCommand cmd = new SqlCommand("spRetrieveBalance", connection);
             cmd.Parameters.Add("@accountId", SqlDbType.Int).Value = accId;
             cmd.CommandType = CommandType.StoredProcedure;
             double res = (double)cmd.ExecuteScalar();
             return res;
         }
-        static public DataTable GetTransactions(int accCode)
+         public DataTable GetTransactions(int accId)
         {
-            throw new NotImplementedException();
+
+            DataTable dataTable = new DataTable();
+            SqlCommand cmd = new SqlCommand("spGetTransactions", connection);
+            cmd.Parameters.Add("@accountId", SqlDbType.Int).Value = accId;
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataReader reader = cmd.ExecuteReader();
+            //load the data table
+            dataTable.Load(reader);
+            return dataTable;
         }
         static public bool PayThatBill(int accCode)
         {
