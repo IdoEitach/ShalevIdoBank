@@ -44,10 +44,21 @@ namespace ShalevIdoBank.DAL
             return dataTable;
         }
 
-        static public bool PayThatBill(int accCode)
+        public void PayThatBill(int accId, string payee, double amount)
         {
-            throw new NotImplementedException();
-        }
+            SqlCommand cmd = new SqlCommand("spInsertTransaction", connection);
+            cmd.Parameters.Add("@date", SqlDbType.NVarChar).Value = DateTime.Now.ToString();
+            cmd.Parameters.Add("@amount", SqlDbType.Float).Value = amount;
+            cmd.Parameters.Add("@payee", SqlDbType.NVarChar).Value = payee;
+            cmd.Parameters.Add("@accountId", SqlDbType.Int).Value = accId;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteScalar();
 
+            cmd = new SqlCommand("spUpdateBalance", connection);
+            cmd.Parameters.Add("@accountId", SqlDbType.Int).Value = accId;
+            cmd.Parameters.Add("@newBalance", SqlDbType.Float).Value = GetBalance(accId) - amount;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteScalar();
+        }
     }
 }

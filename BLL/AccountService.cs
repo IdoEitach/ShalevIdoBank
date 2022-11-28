@@ -26,7 +26,6 @@ namespace ShalevIdoBank.BLL
     static public bool PayThatBill(int accId)
     {
       return DAL.AccountServiceDal.PayThatBill(accId);
-
     }
   }
 }
