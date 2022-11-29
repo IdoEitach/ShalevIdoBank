@@ -7,25 +7,33 @@ using System.Web;
 
 namespace ShalevIdoBank.BLL
 {
-  public class AccountService
-  {
-    static public double GetBalance(int accId)
+    public class AccountService
     {
-      var service = new AccountServiceDal();
-      var res = service.GetBalance(accId);
-      service.Dispose();
-      return res;
+        static public double GetBalance(int accId)
+        {
+            var service = new AccountServiceDal();
+            var res = service.GetBalance(accId);
+            service.Dispose();
+            return res;
+        }
+        static public DataTable GetTransactions(int accId)
+        {
+            var service = new AccountServiceDal();
+            var res = service.GetTransactions(accId);
+            service.Dispose();
+            return res;
+        }
+        static public void PayThatBill(int accId, string payee, double amount)
+        {
+            var service = new AccountServiceDal();
+            service.PayThatBill(accId, payee, amount);
+            
+            service.Dispose();
+
+            if (amount >= 100_000)
+            {
+                    
+            }
+        }
     }
-    static public DataTable GetTransactions(int accId)
-    {
-      var service = new AccountServiceDal();
-      var res = service.GetTransactions(accId);
-      service.Dispose();
-      return res;
-    }
-    static public bool PayThatBill(int accId)
-    {
-      return DAL.AccountServiceDal.PayThatBill(accId);
-    }
-  }
 }
