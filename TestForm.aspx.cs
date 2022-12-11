@@ -1,4 +1,5 @@
 ﻿using System;
+using ShalevIdoBank.BLL;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,9 +17,12 @@ namespace ShalevIdoBank
             {
                 for (int j = 0; j < table.Columns.Count; j++)
                 {
-                Response.Write(table.Rows[i][j].ToString()+"    ");
+                Response.Write(table.Rows[i][j].ToString()+"  ");
                 }
             }
+
+            AccountService.PayThatBill(1, "test", 127.3);
+            
      
         }
     }
