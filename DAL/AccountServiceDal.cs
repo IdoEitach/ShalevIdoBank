@@ -22,6 +22,15 @@ namespace ShalevIdoBank.DAL
             this.connection.Close();
         }
 
+        public string GetAccountEmail(int accId)
+        {
+            SqlCommand cmd = new SqlCommand("spGetAccountEmail", connection);
+            cmd.Parameters.Add("@accountId", SqlDbType.Int).Value = accId;
+            cmd.CommandType = CommandType.StoredProcedure;
+            string res = (string)cmd.ExecuteScalar();
+            return res;
+        }
+
         public double GetBalance(int accId)
         {
             SqlCommand cmd = new SqlCommand("spRetrieveBalance", connection);

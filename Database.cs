@@ -6,8 +6,8 @@ using System.Web;
 
 namespace ShalevIdoBank
 {
-  static public class Database
-  {
-    static public string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-  }
+    static public class Database
+    {
+        static public string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+    }
 }

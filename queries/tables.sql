@@ -14,7 +14,7 @@ CREATE TABLE [dbo].[tblCities] (
 );
 
 CREATE TABLE [dbo].[tblTransactions] (
-    [TransactionId] INT           NOT NULL,
+    [TransactionId] INT           NOT NULL IDENTITY,
     [DatePosted]    NVARCHAR (50) NULL,
     [Amount]        FLOAT (53)    NULL,
     [Payee]         NVARCHAR (50) NULL,
@@ -31,5 +31,6 @@ CREATE TABLE [dbo].[tblUsers] (
     [Address]   NVARCHAR (50) NULL,
     [CityId]    INT           NULL,
     [Zip]       NVARCHAR (50) NULL,
+    [Email]     NVARCHAR(100) NULL, 
     PRIMARY KEY CLUSTERED ([UserId] ASC)
 );
