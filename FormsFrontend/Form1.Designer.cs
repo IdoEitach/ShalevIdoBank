@@ -111,6 +111,8 @@
       this.ClientSize = new System.Drawing.Size(800, 450);
       this.Controls.Add(this.grubox_login);
       this.Controls.Add(this.lbl_title);
+      this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+      this.MaximizeBox = false;
       this.Name = "Form1";
       this.Text = "EatPasta";
       this.grubox_login.ResumeLayout(false);
