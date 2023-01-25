@@ -30,9 +30,9 @@
     {
       this.tabControl1 = new System.Windows.Forms.TabControl();
       this.tabPage1 = new System.Windows.Forms.TabPage();
-      this.textBox3 = new System.Windows.Forms.TextBox();
-      this.textBox2 = new System.Windows.Forms.TextBox();
-      this.textBox1 = new System.Windows.Forms.TextBox();
+      this.txtbox_amount = new System.Windows.Forms.TextBox();
+      this.txtbox_payee = new System.Windows.Forms.TextBox();
+      this.txtbox_accid = new System.Windows.Forms.TextBox();
       this.label4 = new System.Windows.Forms.Label();
       this.label3 = new System.Windows.Forms.Label();
       this.label2 = new System.Windows.Forms.Label();
@@ -41,6 +41,7 @@
       this.button2 = new System.Windows.Forms.Button();
       this.button1 = new System.Windows.Forms.Button();
       this.lbl_loggedin = new System.Windows.Forms.Label();
+      this.btn_commit = new System.Windows.Forms.Button();
       this.tabControl1.SuspendLayout();
       this.tabPage1.SuspendLayout();
       this.tabPage2.SuspendLayout();
@@ -58,9 +59,10 @@
       // 
       // tabPage1
       // 
-      this.tabPage1.Controls.Add(this.textBox3);
-      this.tabPage1.Controls.Add(this.textBox2);
-      this.tabPage1.Controls.Add(this.textBox1);
+      this.tabPage1.Controls.Add(this.btn_commit);
+      this.tabPage1.Controls.Add(this.txtbox_amount);
+      this.tabPage1.Controls.Add(this.txtbox_payee);
+      this.tabPage1.Controls.Add(this.txtbox_accid);
       this.tabPage1.Controls.Add(this.label4);
       this.tabPage1.Controls.Add(this.label3);
       this.tabPage1.Controls.Add(this.label2);
@@ -72,26 +74,26 @@
       this.tabPage1.Text = "Add payment";
       this.tabPage1.UseVisualStyleBackColor = true;
       // 
-      // textBox3
+      // txtbox_amount
       // 
-      this.textBox3.Location = new System.Drawing.Point(339, 106);
-      this.textBox3.Name = "textBox3";
-      this.textBox3.Size = new System.Drawing.Size(158, 20);
-      this.textBox3.TabIndex = 5;
+      this.txtbox_amount.Location = new System.Drawing.Point(339, 106);
+      this.txtbox_amount.Name = "txtbox_amount";
+      this.txtbox_amount.Size = new System.Drawing.Size(158, 20);
+      this.txtbox_amount.TabIndex = 5;
       // 
-      // textBox2
+      // txtbox_payee
       // 
-      this.textBox2.Location = new System.Drawing.Point(339, 74);
-      this.textBox2.Name = "textBox2";
-      this.textBox2.Size = new System.Drawing.Size(158, 20);
-      this.textBox2.TabIndex = 4;
+      this.txtbox_payee.Location = new System.Drawing.Point(339, 74);
+      this.txtbox_payee.Name = "txtbox_payee";
+      this.txtbox_payee.Size = new System.Drawing.Size(158, 20);
+      this.txtbox_payee.TabIndex = 4;
       // 
-      // textBox1
+      // txtbox_accid
       // 
-      this.textBox1.Location = new System.Drawing.Point(339, 39);
-      this.textBox1.Name = "textBox1";
-      this.textBox1.Size = new System.Drawing.Size(158, 20);
-      this.textBox1.TabIndex = 3;
+      this.txtbox_accid.Location = new System.Drawing.Point(339, 39);
+      this.txtbox_accid.Name = "txtbox_accid";
+      this.txtbox_accid.Size = new System.Drawing.Size(158, 20);
+      this.txtbox_accid.TabIndex = 3;
       // 
       // label4
       // 
@@ -170,6 +172,16 @@
       this.lbl_loggedin.Text = "Logged in as ";
       this.lbl_loggedin.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
       // 
+      // btn_commit
+      // 
+      this.btn_commit.Location = new System.Drawing.Point(261, 148);
+      this.btn_commit.Name = "btn_commit";
+      this.btn_commit.Size = new System.Drawing.Size(236, 23);
+      this.btn_commit.TabIndex = 3;
+      this.btn_commit.Text = "Commit";
+      this.btn_commit.UseVisualStyleBackColor = true;
+      this.btn_commit.Click += new System.EventHandler(this.btn_commit_Click);
+      // 
       // DashboardForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -202,11 +214,12 @@
     private System.Windows.Forms.Label lbl_loggedin;
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.Button button2;
-    private System.Windows.Forms.TextBox textBox3;
-    private System.Windows.Forms.TextBox textBox2;
-    private System.Windows.Forms.TextBox textBox1;
+    private System.Windows.Forms.TextBox txtbox_amount;
+    private System.Windows.Forms.TextBox txtbox_payee;
+    private System.Windows.Forms.TextBox txtbox_accid;
     private System.Windows.Forms.Label label4;
     private System.Windows.Forms.Label label3;
     private System.Windows.Forms.Label label2;
+    private System.Windows.Forms.Button btn_commit;
   }
 }

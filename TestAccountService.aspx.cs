@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 
 namespace ShalevIdoBank
 {
@@ -20,7 +21,7 @@ namespace ShalevIdoBank
             // Testing GetTransactions
             Response.Write("<br/><br/>All transactions:<br/>");
 
-            var table = BLL.AccountService.GetTransactions(1);
+            DataTable table = BLL.AccountService.GetTransactions(1);
             for (int i = 0; i < table.Rows.Count; i++)
             {
                 for (int j = 0; j < table.Columns.Count; j++)

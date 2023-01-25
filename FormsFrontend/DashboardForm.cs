@@ -13,6 +13,7 @@ namespace FormsFrontend
   public partial class DashboardForm : Form
   {
     private string username;
+    private bank.ClientBankService service = new bank.ClientBankService();
 
     public DashboardForm(string username)
     {
@@ -28,6 +29,11 @@ namespace FormsFrontend
     private void DashboardForm_Load(object sender, EventArgs e)
     {
       lbl_loggedin.Text += username;
+    }
+
+    private void btn_commit_Click(object sender, EventArgs e)
+    {
+      service.PayThatBill(int.Parse(txtbox_accid.Text), txtbox_payee.Text, int.Parse(txtbox_amount.Text));
     }
   }
 }

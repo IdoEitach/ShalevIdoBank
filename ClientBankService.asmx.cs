@@ -7,14 +7,14 @@ using System.Web.Services;
 namespace ShalevIdoBank
 {
     /// <summary>
-    /// Summary description for WebService2
+    /// Summary description for ClientBankService
     /// </summary>
     [WebService(Namespace = "http://tempuri.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
     // [System.Web.Script.Services.ScriptService]
-    public class WebService2 : System.Web.Services.WebService
+    public class ClientBankService : System.Web.Services.WebService
     {
 
         [WebMethod]
