@@ -18,9 +18,9 @@ namespace ShalevIdoBank
     {
 
         [WebMethod]
-        public bool PayThatBill(int accId, string payee, float amount)
+        public bool PayThatBill(int accountId, string payee, float amount)
         {
-            return BLL.AccountService.PayThatBill(accId, payee, amount);
+            return BLL.AccountService.PayThatBill(accountId, payee, amount);
         }
     }
 }

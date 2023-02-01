@@ -12,32 +12,32 @@ namespace ShalevIdoBank.BLL
 {
   public class AccountService
   {
-    static public double GetBalance(int accId)
+    static public double GetBalance(int accountId)
     {
       var service = new AccountServiceDal();
-      var res = service.GetBalance(accId);
+      var res = service.GetBalance(accountId);
       service.Dispose();
       return res;
     }
-    static public DataTable GetTransactions(int accId)
+    static public DataTable GetTransactions(int accountId)
     {
       var service = new AccountServiceDal();
-      var res = service.GetTransactions(accId);
+      var res = service.GetTransactions(accountId);
       service.Dispose();
       return res;
     }
-    static public bool PayThatBill(int accId, string payee, float amount)
+    static public bool PayThatBill(int accountId, string payee, float amount)
     {
       var service = new AccountServiceDal();
-      if (AccountService.GetBalance(accId) < amount) return false;
+      if (AccountService.GetBalance(accountId) < amount) return false;
 
-      bool res = service.PayThatBill(accId, payee, amount);
+      bool res = service.PayThatBill(accountId, payee, amount);
 
       // Send an Email
       if (amount >= 100_000)
       {
         string from = "bank@gmail.com";
-        string to = service.GetAccountEmail(accId);
+        string to = service.GetAccountEmail(accountId);
         MailMessage message = new MailMessage(from, to);
 
         string mailbody = "Your account has been billed a total of " + amount.ToString() + " money.";

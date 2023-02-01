@@ -34,7 +34,7 @@ namespace FormsFrontend
 
     private void btn_commit_Click(object sender, EventArgs e)
     {
-      bool succeed = service.PayThatBill(int.Parse(txtbox_accid.Text), txtbox_payee.Text, float.Parse(txtbox_amount.Text));
+      bool succeed = service.PayThatBill(int.Parse(txtbox_accountId.Text), txtbox_payee.Text, float.Parse(txtbox_amount.Text));
       if (succeed)
       {
         MessageBox.Show("Success!", "Pay that bill", MessageBoxButtons.OK, MessageBoxIcon.Information);
