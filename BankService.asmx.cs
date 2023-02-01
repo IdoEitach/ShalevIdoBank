@@ -19,15 +19,15 @@ namespace ShalevIdoBank
     {
 
         [WebMethod]
-        public double GetBalance(int accId)
+        public double GetBalance(int accountId)
         {
-            return BLL.AccountService.GetBalance(accId);
+            return BLL.AccountService.GetBalance(accountId);
         }
 
         [WebMethod]
-        public DataTable GetTransactions(int accId)
+        public DataTable GetTransactions(int accountId)
         {
-            return BLL.AccountService.GetTransactions(accId);
+            return BLL.AccountService.GetTransactions(accountId);
         }
     }
 }

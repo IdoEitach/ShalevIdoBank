@@ -74,25 +74,26 @@ namespace FormsFrontend.bank {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/PayThatBill", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void PayThatBill(int accId, string payee, double amount) {
-            this.Invoke("PayThatBill", new object[] {
-                        accId,
+        public bool PayThatBill(int accountId, string payee, float amount) {
+            object[] results = this.Invoke("PayThatBill", new object[] {
+                        accountId,
                         payee,
                         amount});
+            return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void PayThatBillAsync(int accId, string payee, double amount) {
-            this.PayThatBillAsync(accId, payee, amount, null);
+        public void PayThatBillAsync(int accountId, string payee, float amount) {
+            this.PayThatBillAsync(accountId, payee, amount, null);
         }
         
         /// <remarks/>
-        public void PayThatBillAsync(int accId, string payee, double amount, object userState) {
+        public void PayThatBillAsync(int accountId, string payee, float amount, object userState) {
             if ((this.PayThatBillOperationCompleted == null)) {
                 this.PayThatBillOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPayThatBillOperationCompleted);
             }
             this.InvokeAsync("PayThatBill", new object[] {
-                        accId,
+                        accountId,
                         payee,
                         amount}, this.PayThatBillOperationCompleted, userState);
         }
@@ -100,7 +101,7 @@ namespace FormsFrontend.bank {
         private void OnPayThatBillOperationCompleted(object arg) {
             if ((this.PayThatBillCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.PayThatBillCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.PayThatBillCompleted(this, new PayThatBillCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -125,7 +126,29 @@ namespace FormsFrontend.bank {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
-    public delegate void PayThatBillCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    public delegate void PayThatBillCompletedEventHandler(object sender, PayThatBillCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class PayThatBillCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal PayThatBillCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
 }
 
 #pragma warning restore 1591

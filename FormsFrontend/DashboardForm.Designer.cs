@@ -30,9 +30,10 @@
     {
       this.tabControl1 = new System.Windows.Forms.TabControl();
       this.tabPage1 = new System.Windows.Forms.TabPage();
+      this.btn_commit = new System.Windows.Forms.Button();
       this.txtbox_amount = new System.Windows.Forms.TextBox();
       this.txtbox_payee = new System.Windows.Forms.TextBox();
-      this.txtbox_accid = new System.Windows.Forms.TextBox();
+      this.txtbox_accountId = new System.Windows.Forms.TextBox();
       this.label4 = new System.Windows.Forms.Label();
       this.label3 = new System.Windows.Forms.Label();
       this.label2 = new System.Windows.Forms.Label();
@@ -41,7 +42,6 @@
       this.button2 = new System.Windows.Forms.Button();
       this.button1 = new System.Windows.Forms.Button();
       this.lbl_loggedin = new System.Windows.Forms.Label();
-      this.btn_commit = new System.Windows.Forms.Button();
       this.tabControl1.SuspendLayout();
       this.tabPage1.SuspendLayout();
       this.tabPage2.SuspendLayout();
@@ -62,7 +62,7 @@
       this.tabPage1.Controls.Add(this.btn_commit);
       this.tabPage1.Controls.Add(this.txtbox_amount);
       this.tabPage1.Controls.Add(this.txtbox_payee);
-      this.tabPage1.Controls.Add(this.txtbox_accid);
+      this.tabPage1.Controls.Add(this.txtbox_accountId);
       this.tabPage1.Controls.Add(this.label4);
       this.tabPage1.Controls.Add(this.label3);
       this.tabPage1.Controls.Add(this.label2);
@@ -73,6 +73,16 @@
       this.tabPage1.TabIndex = 0;
       this.tabPage1.Text = "Add payment";
       this.tabPage1.UseVisualStyleBackColor = true;
+      // 
+      // btn_commit
+      // 
+      this.btn_commit.Location = new System.Drawing.Point(261, 148);
+      this.btn_commit.Name = "btn_commit";
+      this.btn_commit.Size = new System.Drawing.Size(236, 23);
+      this.btn_commit.TabIndex = 3;
+      this.btn_commit.Text = "Commit";
+      this.btn_commit.UseVisualStyleBackColor = true;
+      this.btn_commit.Click += new System.EventHandler(this.btn_commit_Click);
       // 
       // txtbox_amount
       // 
@@ -88,12 +98,12 @@
       this.txtbox_payee.Size = new System.Drawing.Size(158, 20);
       this.txtbox_payee.TabIndex = 4;
       // 
-      // txtbox_accid
+      // txtbox_accountId
       // 
-      this.txtbox_accid.Location = new System.Drawing.Point(339, 39);
-      this.txtbox_accid.Name = "txtbox_accid";
-      this.txtbox_accid.Size = new System.Drawing.Size(158, 20);
-      this.txtbox_accid.TabIndex = 3;
+      this.txtbox_accountId.Location = new System.Drawing.Point(339, 39);
+      this.txtbox_accountId.Name = "txtbox_accountId";
+      this.txtbox_accountId.Size = new System.Drawing.Size(158, 20);
+      this.txtbox_accountId.TabIndex = 3;
       // 
       // label4
       // 
@@ -171,16 +181,7 @@
       this.lbl_loggedin.TabIndex = 2;
       this.lbl_loggedin.Text = "Logged in as ";
       this.lbl_loggedin.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-      // 
-      // btn_commit
-      // 
-      this.btn_commit.Location = new System.Drawing.Point(261, 148);
-      this.btn_commit.Name = "btn_commit";
-      this.btn_commit.Size = new System.Drawing.Size(236, 23);
-      this.btn_commit.TabIndex = 3;
-      this.btn_commit.Text = "Commit";
-      this.btn_commit.UseVisualStyleBackColor = true;
-      this.btn_commit.Click += new System.EventHandler(this.btn_commit_Click);
+      this.lbl_loggedin.Click += new System.EventHandler(this.lbl_loggedin_Click);
       // 
       // DashboardForm
       // 
@@ -216,7 +217,7 @@
     private System.Windows.Forms.Button button2;
     private System.Windows.Forms.TextBox txtbox_amount;
     private System.Windows.Forms.TextBox txtbox_payee;
-    private System.Windows.Forms.TextBox txtbox_accid;
+    private System.Windows.Forms.TextBox txtbox_accountId;
     private System.Windows.Forms.Label label4;
     private System.Windows.Forms.Label label3;
     private System.Windows.Forms.Label label2;

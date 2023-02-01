@@ -5,14 +5,18 @@
       <s:element name="PayThatBill">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="accId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="accountId" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="payee" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:double" />
+            <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:float" />
           </s:sequence>
         </s:complexType>
       </s:element>
       <s:element name="PayThatBillResponse">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PayThatBillResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
     </s:schema>
   </wsdl:types>

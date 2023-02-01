@@ -25,30 +25,52 @@ namespace ShalevIdoBank.DAL
       this.connection.Close();
     }
 
-    public string GetAccountEmail(int accId)
+    public string GetAccountEmail(int accountId)
     {
       SqlCommand cmd = new SqlCommand("spGetAccountEmail", connection, transaction);
-      cmd.Parameters.Add("@accountId", SqlDbType.Int).Value = accId;
+      cmd.Parameters.Add("@accountId", SqlDbType.Int).Value = accountId;
       cmd.CommandType = CommandType.StoredProcedure;
       string res = (string)cmd.ExecuteScalar();
       return res;
     }
 
-    public double GetBalance(int accId)
+    public float GetBalance(int accountId)
     {
       SqlCommand cmd = new SqlCommand("spRetrieveBalance", connection, transaction);
-      cmd.Parameters.Add("@accountId", SqlDbType.Int).Value = accId;
+      cmd.Parameters.Add("@accountId", SqlDbType.Int).Value = accountId;
       cmd.CommandType = CommandType.StoredProcedure;
-      double res = (double)cmd.ExecuteScalar();
+      float res = (float)cmd.ExecuteScalar();
       return res;
     }
+    public void UpdateBalance(int accountId, float newBalance)
+    {
+      SqlCommand cmd = new SqlCommand("spUpdateBalance", connection, transaction);
+      cmd.Parameters.Add("@accountId", SqlDbType.Int).Value = accountId;
+      cmd.Parameters.Add("@newBalance", SqlDbType.Int).Value = newBalance;
+      cmd.CommandType = CommandType.StoredProcedure;
+      cmd.ExecuteNonQuery();
 
-    public DataTable GetTransactions(int accId)
+    }
+
+    public void InsertTransaction(float amount, string description, int payingAccountId, int payeeAccountId)
+    {
+      SqlCommand cmd = new SqlCommand("spInsertTransaction", connection, transaction);
+      cmd.Parameters.Add("@date", SqlDbType.NVarChar).Value = DateTime.Now.ToString();
+      cmd.Parameters.Add("@amount", SqlDbType.Float).Value = amount;
+      cmd.Parameters.Add("@description", SqlDbType.NVarChar).Value = description;
+      cmd.Parameters.Add("@payingAccountId", SqlDbType.Int).Value = payingAccountId;
+      cmd.Parameters.Add("@payingAccountId", SqlDbType.Int).Value = payeeAccountId;
+      cmd.CommandType = CommandType.StoredProcedure;
+      cmd.ExecuteNonQuery();
+
+    }
+
+    public DataTable GetTransactions(int accountId)
     {
 
       DataTable dataTable = new DataTable();
       SqlCommand cmd = new SqlCommand("spGetTransactions", connection, transaction);
-      cmd.Parameters.Add("@accountId", SqlDbType.Int).Value = accId;
+      cmd.Parameters.Add("@accountId", SqlDbType.Int).Value = accountId;
       cmd.CommandType = CommandType.StoredProcedure;
       SqlDataReader reader = cmd.ExecuteReader();
       //load the data table
@@ -56,36 +78,28 @@ namespace ShalevIdoBank.DAL
       return dataTable;
     }
 
-    public void PayThatBill(int accId, string payee, double amount)
+    public bool PayThatBill(float amount, string description, int payingAccountId, int payeeAccountId)
     {
       transaction = connection.BeginTransaction();
       try
       {
-        SqlCommand cmd = new SqlCommand("spInsertTransaction", connection, transaction);
-        cmd.Parameters.Add("@date", SqlDbType.NVarChar).Value = DateTime.Now.ToString();
-        cmd.Parameters.Add("@amount", SqlDbType.Float).Value = amount;
-        cmd.Parameters.Add("@payee", SqlDbType.NVarChar).Value = payee;
-        cmd.Parameters.Add("@accountId", SqlDbType.Int).Value = accId;
-        cmd.CommandType = CommandType.StoredProcedure;
-        cmd.ExecuteScalar();
+        InsertTransaction(amount, description, payingAccountId, payeeAccountId);
 
-        cmd = new SqlCommand("spUpdateBalance", connection, transaction);
-        cmd.Parameters.Add("@accountId", SqlDbType.Int).Value = accId;
-        cmd.Parameters.Add("@newBalance", SqlDbType.Float).Value = GetBalance(accId) - amount;
-        cmd.CommandType = CommandType.StoredProcedure;
-        cmd.ExecuteScalar();
+        UpdateBalance(payingAccountId, GetBalance(payingAccountId) - amount);
+        UpdateBalance(payeeAccountId, GetBalance(payeeAccountId) + amount);
 
         transaction.Commit();
       }
-      catch (Exception ex)
+      catch (Exception)
       {
         transaction.Rollback();
-        throw ex;
+        return false;
       }
       finally
       {
         transaction = null;
       }
+      return true;
     }
   }
 }

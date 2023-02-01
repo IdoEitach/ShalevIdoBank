@@ -14,14 +14,17 @@ CREATE TABLE [dbo].[tblCities] (
 );
 
 CREATE TABLE [dbo].[tblTransactions] (
-    [TransactionId] INT           NOT NULL IDENTITY,
+    [TransactionId] INT           IDENTITY (1, 1) NOT NULL,
     [DatePosted]    NVARCHAR (50) NULL,
     [Amount]        FLOAT (53)    NULL,
-    [Payee]         NVARCHAR (50) NULL,
+    [Description]         NVARCHAR (50) NULL,
     [CheckNumber]   INT           NULL,
-    [AccountId]     INT           NULL,
+    [PayingAccountId]     INT           NULL,
+	[PayeeAccountId]     INT           NULL,
     PRIMARY KEY CLUSTERED ([TransactionId] ASC)
 );
+
+
 
 CREATE TABLE [dbo].[tblUsers] (
     [UserId]    INT  NOT NULL IDENTITY,

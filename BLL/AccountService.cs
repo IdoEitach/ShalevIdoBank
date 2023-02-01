@@ -26,12 +26,12 @@ namespace ShalevIdoBank.BLL
       service.Dispose();
       return res;
     }
-    static public void PayThatBill(int accId, string payee, double amount)
+    static public bool PayThatBill(int accId, string payee, float amount)
     {
       var service = new AccountServiceDal();
-      if (AccountService.GetBalance(accId) < amount) return;
+      if (AccountService.GetBalance(accId) < amount) return false;
 
-      service.PayThatBill(accId, payee, amount);
+      bool res = service.PayThatBill(accId, payee, amount);
 
       // Send an Email
       if (amount >= 100_000)
@@ -63,6 +63,7 @@ namespace ShalevIdoBank.BLL
       }
 
       service.Dispose();
+      return res;
     }
   }
 }

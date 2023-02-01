@@ -1,9 +1,10 @@
 ﻿CREATE PROCEDURE [dbo].[spInsertTransaction]
 	@date Nvarchar(50),
 	@amount float,
-	@payee Nvarchar(50),
-	@accountId int
+	@description Nvarchar(50),
+	@payingAccountId int,
+	@payeeAccountId int 
 AS
-	insert into tblTransactions (DatePosted, Amount,Payee,AccountId)
-	Values(@date , @amount, @payee , @accountId);
+	insert into tblTransactions (DatePosted, Amount,Description,PayingAccountId,PayeeAccountId)
+	Values(@date , @amount, @description , @payingAccountId,@payeeAccountId);
 RETURN 0
