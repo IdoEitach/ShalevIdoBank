@@ -2,5 +2,5 @@
 	@UserName NVARCHAR(50),
 	@Password NVARCHAR(50)
 AS
-	Select * FROM tblAccounts Where UserName = @UserName And Password = @PassWord
+	Select * FROM tblAccounts Where UserName = @UserName And Password = @Password
 RETURN 0

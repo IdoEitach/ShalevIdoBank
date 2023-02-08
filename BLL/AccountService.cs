@@ -26,18 +26,21 @@ namespace ShalevIdoBank.BLL
       service.Dispose();
       return res;
     }
-    static public bool PayThatBill(int accountId, string payee, float amount)
+    static public bool PayThatBill(float amount, string description, string payingUserName, string payingPassword, string payeeUserName)
     {
       var service = new AccountServiceDal();
-      if (AccountService.GetBalance(accountId) < amount) return false;
+      int payingAccountId = service.GetAccountIdByUserName(payingUserName);
+      int payeeAccountId = service.GetAccountIdByUserName(payeeUserName);
 
-      bool res = service.PayThatBill(accountId, payee, amount);
+      if (AccountService.GetBalance(payingAccountId) < amount) return false;
+      bool res = service.PayThatBill(amount, description, payingAccountId, payeeAccountId);
+
 
       // Send an Email
       if (amount >= 100_000)
       {
         string from = "bank@gmail.com";
-        string to = service.GetAccountEmail(accountId);
+        string to = service.GetAccountEmail(payingAccountId);
         MailMessage message = new MailMessage(from, to);
 
         string mailbody = "Your account has been billed a total of " + amount.ToString() + " money.";

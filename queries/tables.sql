@@ -1,8 +1,8 @@
 ﻿CREATE TABLE [dbo].[tblAccounts] (
-    [AccountId] INT           NOT NULL IDENTITY,
+    [AccountId] INT           IDENTITY (1, 1) NOT NULL,
     [Balance]   FLOAT (53)    NULL,
     [UserId]    NVARCHAR (50) NULL,
-    [UserName]  NVARCHAR (50) NULL,
+    [UserName]  NVARCHAR (50) NULL UNIQUE,
     [Password]  NVARCHAR (50) NULL,
     PRIMARY KEY CLUSTERED ([AccountId] ASC)
 );

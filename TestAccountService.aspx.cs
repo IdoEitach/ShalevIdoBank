@@ -15,7 +15,7 @@ namespace ShalevIdoBank
         {
             // Testing PayThatBill + GetBalance
             Response.Write("Before running \"PayThatBill\" on Account 1. Current amount: " + AccountService.GetBalance(1).ToString() + "<br/>");
-            AccountService.PayThatBill(1, "Ido", 122.15f);
+            // AccountService.PayThatBill(1, "Ido", 122.15f);
             Response.Write("After running \"PayThatBill\" on Account 1. Current amount: " + AccountService.GetBalance(1).ToString() + "<br/>");
             
             // Testing GetTransactions

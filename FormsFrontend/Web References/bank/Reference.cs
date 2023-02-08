@@ -74,28 +74,32 @@ namespace FormsFrontend.bank {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/PayThatBill", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool PayThatBill(int accountId, string payee, float amount) {
+        public bool PayThatBill(float amount, string description, string payingUserName, string payingPassword, string payeeUserName) {
             object[] results = this.Invoke("PayThatBill", new object[] {
-                        accountId,
-                        payee,
-                        amount});
+                        amount,
+                        description,
+                        payingUserName,
+                        payingPassword,
+                        payeeUserName});
             return ((bool)(results[0]));
         }
         
         /// <remarks/>
-        public void PayThatBillAsync(int accountId, string payee, float amount) {
-            this.PayThatBillAsync(accountId, payee, amount, null);
+        public void PayThatBillAsync(float amount, string description, string payingUserName, string payingPassword, string payeeUserName) {
+            this.PayThatBillAsync(amount, description, payingUserName, payingPassword, payeeUserName, null);
         }
         
         /// <remarks/>
-        public void PayThatBillAsync(int accountId, string payee, float amount, object userState) {
+        public void PayThatBillAsync(float amount, string description, string payingUserName, string payingPassword, string payeeUserName, object userState) {
             if ((this.PayThatBillOperationCompleted == null)) {
                 this.PayThatBillOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPayThatBillOperationCompleted);
             }
             this.InvokeAsync("PayThatBill", new object[] {
-                        accountId,
-                        payee,
-                        amount}, this.PayThatBillOperationCompleted, userState);
+                        amount,
+                        description,
+                        payingUserName,
+                        payingPassword,
+                        payeeUserName}, this.PayThatBillOperationCompleted, userState);
         }
         
         private void OnPayThatBillOperationCompleted(object arg) {

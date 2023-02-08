@@ -5,9 +5,11 @@
       <s:element name="PayThatBill">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="accountId" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="payee" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:float" />
+            <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="payingUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="payingPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="payeeUserName" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>

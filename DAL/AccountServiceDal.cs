@@ -39,7 +39,15 @@ namespace ShalevIdoBank.DAL
       SqlCommand cmd = new SqlCommand("spRetrieveBalance", connection, transaction);
       cmd.Parameters.Add("@accountId", SqlDbType.Int).Value = accountId;
       cmd.CommandType = CommandType.StoredProcedure;
-      float res = (float)cmd.ExecuteScalar();
+      float res = Convert.ToSingle(cmd.ExecuteScalar()); // Convert to float
+      return res;
+    }
+    public int GetAccountIdByUserName(string accountUserName)
+    {
+      SqlCommand cmd = new SqlCommand("spGetAccountIdByUsername", connection, transaction);
+      cmd.Parameters.Add("@accountUserName", SqlDbType.NVarChar).Value = accountUserName;
+      cmd.CommandType = CommandType.StoredProcedure;
+      int res = (int)cmd.ExecuteScalar();
       return res;
     }
     public void UpdateBalance(int accountId, float newBalance)
@@ -59,7 +67,7 @@ namespace ShalevIdoBank.DAL
       cmd.Parameters.Add("@amount", SqlDbType.Float).Value = amount;
       cmd.Parameters.Add("@description", SqlDbType.NVarChar).Value = description;
       cmd.Parameters.Add("@payingAccountId", SqlDbType.Int).Value = payingAccountId;
-      cmd.Parameters.Add("@payingAccountId", SqlDbType.Int).Value = payeeAccountId;
+      cmd.Parameters.Add("@payeeAccountId", SqlDbType.Int).Value = payeeAccountId;
       cmd.CommandType = CommandType.StoredProcedure;
       cmd.ExecuteNonQuery();
 
@@ -67,7 +75,6 @@ namespace ShalevIdoBank.DAL
 
     public DataTable GetTransactions(int accountId)
     {
-
       DataTable dataTable = new DataTable();
       SqlCommand cmd = new SqlCommand("spGetTransactions", connection, transaction);
       cmd.Parameters.Add("@accountId", SqlDbType.Int).Value = accountId;

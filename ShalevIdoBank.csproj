@@ -80,6 +80,7 @@
     <Content Include="queries\spUpdateBalance.sql" />
     <Content Include="queries\spValidateUser.sql" />
     <Content Include="queries\tables.sql" />
+    <Content Include="queries\spGetAccountIdByUsername.sql" />
     <Content Include="TestAccountService.aspx" />
     <Content Include="Web.config" />
     <Content Include="BankService.asmx" />

@@ -32,16 +32,18 @@
       this.tabPage1 = new System.Windows.Forms.TabPage();
       this.btn_commit = new System.Windows.Forms.Button();
       this.txtbox_amount = new System.Windows.Forms.TextBox();
-      this.txtbox_payee = new System.Windows.Forms.TextBox();
-      this.txtbox_accountId = new System.Windows.Forms.TextBox();
+      this.txtbox_description = new System.Windows.Forms.TextBox();
       this.label4 = new System.Windows.Forms.Label();
       this.label3 = new System.Windows.Forms.Label();
-      this.label2 = new System.Windows.Forms.Label();
       this.tabPage2 = new System.Windows.Forms.TabPage();
       this.label1 = new System.Windows.Forms.Label();
       this.button2 = new System.Windows.Forms.Button();
       this.button1 = new System.Windows.Forms.Button();
       this.lbl_loggedin = new System.Windows.Forms.Label();
+      this.txtbox_acc_username = new System.Windows.Forms.TextBox();
+      this.label5 = new System.Windows.Forms.Label();
+      this.label6 = new System.Windows.Forms.Label();
+      this.txtbox_acc_password = new System.Windows.Forms.TextBox();
       this.tabControl1.SuspendLayout();
       this.tabPage1.SuspendLayout();
       this.tabPage2.SuspendLayout();
@@ -59,13 +61,15 @@
       // 
       // tabPage1
       // 
+      this.tabPage1.Controls.Add(this.label6);
+      this.tabPage1.Controls.Add(this.txtbox_acc_password);
+      this.tabPage1.Controls.Add(this.label5);
+      this.tabPage1.Controls.Add(this.txtbox_acc_username);
       this.tabPage1.Controls.Add(this.btn_commit);
       this.tabPage1.Controls.Add(this.txtbox_amount);
-      this.tabPage1.Controls.Add(this.txtbox_payee);
-      this.tabPage1.Controls.Add(this.txtbox_accountId);
+      this.tabPage1.Controls.Add(this.txtbox_description);
       this.tabPage1.Controls.Add(this.label4);
       this.tabPage1.Controls.Add(this.label3);
-      this.tabPage1.Controls.Add(this.label2);
       this.tabPage1.Location = new System.Drawing.Point(4, 22);
       this.tabPage1.Name = "tabPage1";
       this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -76,7 +80,7 @@
       // 
       // btn_commit
       // 
-      this.btn_commit.Location = new System.Drawing.Point(261, 148);
+      this.btn_commit.Location = new System.Drawing.Point(261, 171);
       this.btn_commit.Name = "btn_commit";
       this.btn_commit.Size = new System.Drawing.Size(236, 23);
       this.btn_commit.TabIndex = 3;
@@ -86,29 +90,22 @@
       // 
       // txtbox_amount
       // 
-      this.txtbox_amount.Location = new System.Drawing.Point(339, 106);
+      this.txtbox_amount.Location = new System.Drawing.Point(360, 92);
       this.txtbox_amount.Name = "txtbox_amount";
-      this.txtbox_amount.Size = new System.Drawing.Size(158, 20);
+      this.txtbox_amount.Size = new System.Drawing.Size(137, 20);
       this.txtbox_amount.TabIndex = 5;
       // 
-      // txtbox_payee
+      // txtbox_description
       // 
-      this.txtbox_payee.Location = new System.Drawing.Point(339, 74);
-      this.txtbox_payee.Name = "txtbox_payee";
-      this.txtbox_payee.Size = new System.Drawing.Size(158, 20);
-      this.txtbox_payee.TabIndex = 4;
-      // 
-      // txtbox_accountId
-      // 
-      this.txtbox_accountId.Location = new System.Drawing.Point(339, 39);
-      this.txtbox_accountId.Name = "txtbox_accountId";
-      this.txtbox_accountId.Size = new System.Drawing.Size(158, 20);
-      this.txtbox_accountId.TabIndex = 3;
+      this.txtbox_description.Location = new System.Drawing.Point(360, 65);
+      this.txtbox_description.Name = "txtbox_description";
+      this.txtbox_description.Size = new System.Drawing.Size(137, 20);
+      this.txtbox_description.TabIndex = 4;
       // 
       // label4
       // 
       this.label4.AutoSize = true;
-      this.label4.Location = new System.Drawing.Point(258, 108);
+      this.label4.Location = new System.Drawing.Point(258, 95);
       this.label4.Name = "label4";
       this.label4.Size = new System.Drawing.Size(75, 13);
       this.label4.TabIndex = 2;
@@ -117,20 +114,11 @@
       // label3
       // 
       this.label3.AutoSize = true;
-      this.label3.Location = new System.Drawing.Point(258, 76);
+      this.label3.Location = new System.Drawing.Point(258, 68);
       this.label3.Name = "label3";
-      this.label3.Size = new System.Drawing.Size(37, 13);
+      this.label3.Size = new System.Drawing.Size(60, 13);
       this.label3.TabIndex = 1;
-      this.label3.Text = "Payee";
-      // 
-      // label2
-      // 
-      this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(258, 42);
-      this.label2.Name = "label2";
-      this.label2.Size = new System.Drawing.Size(61, 13);
-      this.label2.TabIndex = 0;
-      this.label2.Text = "Account ID";
+      this.label3.Text = "Description";
       // 
       // tabPage2
       // 
@@ -181,7 +169,38 @@
       this.lbl_loggedin.TabIndex = 2;
       this.lbl_loggedin.Text = "Logged in as ";
       this.lbl_loggedin.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-      this.lbl_loggedin.Click += new System.EventHandler(this.lbl_loggedin_Click);
+      // 
+      // txtbox_acc_username
+      // 
+      this.txtbox_acc_username.Location = new System.Drawing.Point(360, 119);
+      this.txtbox_acc_username.Name = "txtbox_acc_username";
+      this.txtbox_acc_username.Size = new System.Drawing.Size(137, 20);
+      this.txtbox_acc_username.TabIndex = 6;
+      // 
+      // label5
+      // 
+      this.label5.AutoSize = true;
+      this.label5.Location = new System.Drawing.Point(258, 122);
+      this.label5.Name = "label5";
+      this.label5.Size = new System.Drawing.Size(98, 13);
+      this.label5.TabIndex = 7;
+      this.label5.Text = "Account Username";
+      // 
+      // label6
+      // 
+      this.label6.AutoSize = true;
+      this.label6.Location = new System.Drawing.Point(258, 148);
+      this.label6.Name = "label6";
+      this.label6.Size = new System.Drawing.Size(96, 13);
+      this.label6.TabIndex = 9;
+      this.label6.Text = "Account Password";
+      // 
+      // txtbox_acc_password
+      // 
+      this.txtbox_acc_password.Location = new System.Drawing.Point(360, 145);
+      this.txtbox_acc_password.Name = "txtbox_acc_password";
+      this.txtbox_acc_password.Size = new System.Drawing.Size(137, 20);
+      this.txtbox_acc_password.TabIndex = 8;
       // 
       // DashboardForm
       // 
@@ -216,11 +235,13 @@
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.Button button2;
     private System.Windows.Forms.TextBox txtbox_amount;
-    private System.Windows.Forms.TextBox txtbox_payee;
-    private System.Windows.Forms.TextBox txtbox_accountId;
+    private System.Windows.Forms.TextBox txtbox_description;
     private System.Windows.Forms.Label label4;
     private System.Windows.Forms.Label label3;
-    private System.Windows.Forms.Label label2;
     private System.Windows.Forms.Button btn_commit;
+    private System.Windows.Forms.Label label6;
+    private System.Windows.Forms.TextBox txtbox_acc_password;
+    private System.Windows.Forms.Label label5;
+    private System.Windows.Forms.TextBox txtbox_acc_username;
   }
 }
