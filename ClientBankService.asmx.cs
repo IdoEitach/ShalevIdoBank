@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
@@ -21,6 +22,11 @@ namespace ShalevIdoBank
     public bool PayThatBill(float amount, string description, string payingUserName, string payingPassword, string payeeUserName)
     {
       return BLL.AccountService.PayThatBill(amount, description, payingUserName, payingPassword, payeeUserName);
+    }
+
+    public DataTable GetTransactions(string accountUserName, string accountPassword)
+    {
+      return BLL.AccountService.GetTransactions(accountUserName, accountPassword);
     }
   }
 }
