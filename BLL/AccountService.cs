@@ -26,6 +26,13 @@ namespace ShalevIdoBank.BLL
             service.Dispose();
             return res;
         }
+        static public bool ValidateUser(string accountUserName, string password)
+        {
+            var service = new AccountServiceDal();
+            var res = (service.ValidateUser(accountUserName, password));
+            service.Dispose();
+            return res;
+        }
         static public bool PayThatBill(float amount, string description, string payingUserName, string payingPassword, string payeeUserName)
         {
             var service = new AccountServiceDal();
