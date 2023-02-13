@@ -74,6 +74,7 @@
       <DependentUpon>Banking.mdf</DependentUpon>
     </Content>
     <Content Include="queries\spGetAccountEmail.sql" />
+    <Content Include="queries\spGetAllAccountUsernames.sql" />
     <Content Include="queries\spGetTransactions.sql" />
     <Content Include="queries\spInsertTransaction.sql" />
     <Content Include="queries\spRetrieveBalance.sql" />

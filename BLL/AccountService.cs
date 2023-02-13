@@ -27,6 +27,7 @@ namespace ShalevIdoBank.BLL
 
       var res = service.GetTransactions(accountId);
       service.Dispose();
+      res.TableName = $"{accountUserName}'s Transactions";
       return res;
     }
     static public bool PayThatBill(float amount, string description, string payingUserName, string payingPassword, string payeeUserName)

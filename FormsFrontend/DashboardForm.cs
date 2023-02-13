@@ -12,6 +12,8 @@ namespace FormsFrontend
 {
   public partial class DashboardForm : Form
   {
+    private const string storeAccountUserName = "EatPasta";
+    private const string storeAccountPassword = "13";
     private string username;
     private bank.ClientBankService service = new bank.ClientBankService();
 
@@ -29,11 +31,12 @@ namespace FormsFrontend
     private void DashboardForm_Load(object sender, EventArgs e)
     {
       lbl_loggedin.Text += username;
+      grd_transactions.DataSource = service.GetTransactions(storeAccountUserName, storeAccountPassword);
     }
 
     private void btn_commit_Click(object sender, EventArgs e)
     {
-      bool succeed = service.PayThatBill(float.Parse(txtbox_amount.Text), txtbox_description.Text, txtbox_acc_username.Text, txtbox_acc_password.Text, "EatPasta");
+      bool succeed = service.PayThatBill(float.Parse(txtbox_amount.Text), txtbox_description.Text, txtbox_acc_username.Text, txtbox_acc_password.Text, storeAccountUserName);
       if (succeed)
       {
         MessageBox.Show("Success!", "Transaction", MessageBoxButtons.OK, MessageBoxIcon.Information);

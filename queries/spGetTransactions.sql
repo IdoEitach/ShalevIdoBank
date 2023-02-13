@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[spGetTransactions]
-	@payingAccountId int 
+	@accountId int 
 AS BEGIN
-	SELECT * From tblTransactions where PayingAccountId=@payingAccountId;
+	SELECT * From tblTransactions where PayingAccountId=@accountId or PayeeAccountId=@accountId;
 END

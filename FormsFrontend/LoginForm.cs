@@ -47,7 +47,9 @@ namespace FormsFrontend
       if (isValidLogin(txtbox_username.Text, txtbox_password.Text))
       {
         DashboardForm dashboardForm = new DashboardForm(txtbox_username.Text);
+        Hide();
         dashboardForm.ShowDialog();
+        Show();
         txtbox_username.Text = null;
         txtbox_password.Text = null;
       } else

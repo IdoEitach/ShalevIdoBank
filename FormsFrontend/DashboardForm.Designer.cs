@@ -30,23 +30,23 @@
     {
       this.tabControl1 = new System.Windows.Forms.TabControl();
       this.tabPage1 = new System.Windows.Forms.TabPage();
+      this.label6 = new System.Windows.Forms.Label();
+      this.txtbox_acc_password = new System.Windows.Forms.TextBox();
+      this.label5 = new System.Windows.Forms.Label();
+      this.txtbox_acc_username = new System.Windows.Forms.TextBox();
       this.btn_commit = new System.Windows.Forms.Button();
       this.txtbox_amount = new System.Windows.Forms.TextBox();
       this.txtbox_description = new System.Windows.Forms.TextBox();
       this.label4 = new System.Windows.Forms.Label();
       this.label3 = new System.Windows.Forms.Label();
       this.tabPage2 = new System.Windows.Forms.TabPage();
-      this.label1 = new System.Windows.Forms.Label();
-      this.button2 = new System.Windows.Forms.Button();
       this.button1 = new System.Windows.Forms.Button();
       this.lbl_loggedin = new System.Windows.Forms.Label();
-      this.txtbox_acc_username = new System.Windows.Forms.TextBox();
-      this.label5 = new System.Windows.Forms.Label();
-      this.label6 = new System.Windows.Forms.Label();
-      this.txtbox_acc_password = new System.Windows.Forms.TextBox();
+      this.grd_transactions = new System.Windows.Forms.DataGridView();
       this.tabControl1.SuspendLayout();
       this.tabPage1.SuspendLayout();
       this.tabPage2.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.grd_transactions)).BeginInit();
       this.SuspendLayout();
       // 
       // tabControl1
@@ -77,6 +77,38 @@
       this.tabPage1.TabIndex = 0;
       this.tabPage1.Text = "Add payment";
       this.tabPage1.UseVisualStyleBackColor = true;
+      // 
+      // label6
+      // 
+      this.label6.AutoSize = true;
+      this.label6.Location = new System.Drawing.Point(258, 148);
+      this.label6.Name = "label6";
+      this.label6.Size = new System.Drawing.Size(96, 13);
+      this.label6.TabIndex = 9;
+      this.label6.Text = "Account Password";
+      // 
+      // txtbox_acc_password
+      // 
+      this.txtbox_acc_password.Location = new System.Drawing.Point(360, 145);
+      this.txtbox_acc_password.Name = "txtbox_acc_password";
+      this.txtbox_acc_password.Size = new System.Drawing.Size(137, 20);
+      this.txtbox_acc_password.TabIndex = 8;
+      // 
+      // label5
+      // 
+      this.label5.AutoSize = true;
+      this.label5.Location = new System.Drawing.Point(258, 122);
+      this.label5.Name = "label5";
+      this.label5.Size = new System.Drawing.Size(98, 13);
+      this.label5.TabIndex = 7;
+      this.label5.Text = "Account Username";
+      // 
+      // txtbox_acc_username
+      // 
+      this.txtbox_acc_username.Location = new System.Drawing.Point(360, 119);
+      this.txtbox_acc_username.Name = "txtbox_acc_username";
+      this.txtbox_acc_username.Size = new System.Drawing.Size(137, 20);
+      this.txtbox_acc_username.TabIndex = 6;
       // 
       // btn_commit
       // 
@@ -122,33 +154,14 @@
       // 
       // tabPage2
       // 
-      this.tabPage2.Controls.Add(this.label1);
-      this.tabPage2.Controls.Add(this.button2);
+      this.tabPage2.Controls.Add(this.grd_transactions);
       this.tabPage2.Location = new System.Drawing.Point(4, 22);
       this.tabPage2.Name = "tabPage2";
       this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
       this.tabPage2.Size = new System.Drawing.Size(768, 400);
       this.tabPage2.TabIndex = 1;
-      this.tabPage2.Text = "tabPage2";
+      this.tabPage2.Text = "Transactions";
       this.tabPage2.UseVisualStyleBackColor = true;
-      // 
-      // label1
-      // 
-      this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(280, 64);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(35, 13);
-      this.label1.TabIndex = 1;
-      this.label1.Text = "label1";
-      // 
-      // button2
-      // 
-      this.button2.Location = new System.Drawing.Point(321, 55);
-      this.button2.Name = "button2";
-      this.button2.Size = new System.Drawing.Size(75, 23);
-      this.button2.TabIndex = 0;
-      this.button2.Text = "button2";
-      this.button2.UseVisualStyleBackColor = true;
       // 
       // button1
       // 
@@ -170,37 +183,14 @@
       this.lbl_loggedin.Text = "Logged in as ";
       this.lbl_loggedin.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
       // 
-      // txtbox_acc_username
+      // grd_transactions
       // 
-      this.txtbox_acc_username.Location = new System.Drawing.Point(360, 119);
-      this.txtbox_acc_username.Name = "txtbox_acc_username";
-      this.txtbox_acc_username.Size = new System.Drawing.Size(137, 20);
-      this.txtbox_acc_username.TabIndex = 6;
-      // 
-      // label5
-      // 
-      this.label5.AutoSize = true;
-      this.label5.Location = new System.Drawing.Point(258, 122);
-      this.label5.Name = "label5";
-      this.label5.Size = new System.Drawing.Size(98, 13);
-      this.label5.TabIndex = 7;
-      this.label5.Text = "Account Username";
-      // 
-      // label6
-      // 
-      this.label6.AutoSize = true;
-      this.label6.Location = new System.Drawing.Point(258, 148);
-      this.label6.Name = "label6";
-      this.label6.Size = new System.Drawing.Size(96, 13);
-      this.label6.TabIndex = 9;
-      this.label6.Text = "Account Password";
-      // 
-      // txtbox_acc_password
-      // 
-      this.txtbox_acc_password.Location = new System.Drawing.Point(360, 145);
-      this.txtbox_acc_password.Name = "txtbox_acc_password";
-      this.txtbox_acc_password.Size = new System.Drawing.Size(137, 20);
-      this.txtbox_acc_password.TabIndex = 8;
+      this.grd_transactions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+      this.grd_transactions.Location = new System.Drawing.Point(6, 6);
+      this.grd_transactions.Name = "grd_transactions";
+      this.grd_transactions.ReadOnly = true;
+      this.grd_transactions.Size = new System.Drawing.Size(756, 388);
+      this.grd_transactions.TabIndex = 0;
       // 
       // DashboardForm
       // 
@@ -219,7 +209,7 @@
       this.tabPage1.ResumeLayout(false);
       this.tabPage1.PerformLayout();
       this.tabPage2.ResumeLayout(false);
-      this.tabPage2.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.grd_transactions)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -232,8 +222,6 @@
     private System.Windows.Forms.TabPage tabPage2;
     private System.Windows.Forms.Button button1;
     private System.Windows.Forms.Label lbl_loggedin;
-    private System.Windows.Forms.Label label1;
-    private System.Windows.Forms.Button button2;
     private System.Windows.Forms.TextBox txtbox_amount;
     private System.Windows.Forms.TextBox txtbox_description;
     private System.Windows.Forms.Label label4;
@@ -243,5 +231,6 @@
     private System.Windows.Forms.TextBox txtbox_acc_password;
     private System.Windows.Forms.Label label5;
     private System.Windows.Forms.TextBox txtbox_acc_username;
+    private System.Windows.Forms.DataGridView grd_transactions;
   }
 }

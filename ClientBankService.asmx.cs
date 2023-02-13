@@ -24,6 +24,7 @@ namespace ShalevIdoBank
       return BLL.AccountService.PayThatBill(amount, description, payingUserName, payingPassword, payeeUserName);
     }
 
+    [WebMethod]
     public DataTable GetTransactions(string accountUserName, string accountPassword)
     {
       return BLL.AccountService.GetTransactions(accountUserName, accountPassword);
