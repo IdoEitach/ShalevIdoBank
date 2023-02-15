@@ -144,7 +144,12 @@ RETURN 0
 
 
 -- Examples
+SET IDENTITY_INSERT [dbo].[tblAccounts] ON
 INSERT INTO [dbo].[tblAccounts] ([AccountId], [Balance], [UserId], [UserName], [Password]) VALUES (1, 4550, N'1', N'Ido', N'123a')
 INSERT INTO [dbo].[tblAccounts] ([AccountId], [Balance], [UserId], [UserName], [Password]) VALUES (2, 350, N'2', N'EatPasta', N'13')
+SET IDENTITY_INSERT [dbo].[tblAccounts] OFF
+go--at
+SET IDENTITY_INSERT [dbo].[tblUsers] ON
 INSERT INTO [dbo].[tblUsers] ([UserId], [FirstName], [LastName], [Phone], [Address], [CityId], [Zip], [Email]) VALUES (1, N'Ido', N'Eitach', N'0583333333', N'Internet', 3, N'166532', N'ido@gmail.com')
 INSERT INTO [dbo].[tblUsers] ([UserId], [FirstName], [LastName], [Phone], [Address], [CityId], [Zip], [Email]) VALUES (2, N'Eat', N'Pasta', N'054675757', N'internet', 3, N'12333', N'EatPasta@gmail.com')
+SET IDENTITY_INSERT [dbo].[tblUsers] OFF

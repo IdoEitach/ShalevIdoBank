@@ -73,15 +73,7 @@
     <Content Include="App_Data\Banking_log.ldf">
       <DependentUpon>Banking.mdf</DependentUpon>
     </Content>
-    <Content Include="queries\spGetAccountEmail.sql" />
-    <Content Include="queries\spGetAllAccountUsernames.sql" />
-    <Content Include="queries\spGetTransactions.sql" />
-    <Content Include="queries\spInsertTransaction.sql" />
-    <Content Include="queries\spRetrieveBalance.sql" />
-    <Content Include="queries\spUpdateBalance.sql" />
-    <Content Include="queries\spValidateUser.sql" />
     <Content Include="queries\tables.sql" />
-    <Content Include="queries\spGetAccountIdByUsername.sql" />
     <Content Include="TestAccountService.aspx" />
     <Content Include="Web.config" />
     <Content Include="BankService.asmx" />

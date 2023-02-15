@@ -20,7 +20,6 @@ namespace ShalevIdoBank
             
             // Testing GetTransactions
             Response.Write("<br/><br/>All transactions:<br/>");
-
             DataTable table = BLL.AccountService.GetTransactions("EatPasta", "13");
             for (int i = 0; i < table.Rows.Count; i++)
             {
