@@ -14,17 +14,15 @@ CREATE TABLE [dbo].[tblCities] (
 );
 
 CREATE TABLE [dbo].[tblTransactions] (
-    [TransactionId] INT           IDENTITY (1, 1) NOT NULL,
-    [DatePosted]    NVARCHAR (50) NULL,
-    [Amount]        FLOAT (53)    NULL,
-    [Description]         NVARCHAR (50) NULL,
-    [CheckNumber]   INT           NULL,
-    [PayingAccountId]     INT           NULL,
-	[PayeeAccountId]     INT           NULL,
+    [TransactionId]   INT           IDENTITY (1, 1) NOT NULL,
+    [DatePosted]      NVARCHAR (50) NULL,
+    [Amount]          FLOAT (53)    NULL,
+    [Description]     NVARCHAR (50) NULL,
+    [CheckNumber]     NVARCHAR(50)           NULL,
+    [PayingAccountId] INT           NULL,
+    [PayeeAccountId]  INT           NULL,
     PRIMARY KEY CLUSTERED ([TransactionId] ASC)
 );
-
-
 
 CREATE TABLE [dbo].[tblUsers] (
     [UserId]    INT  NOT NULL IDENTITY,
@@ -39,5 +37,7 @@ CREATE TABLE [dbo].[tblUsers] (
 );
 
 -- Examples
-INSERT INTO [dbo].[tblAccounts] ([Balance], [UserId], [UserName], [Password]) VALUES ( 555432, 1, 'Ido', '123a')
-INSERT INTO [dbo].[tblUsers] ([FirstName], [LastName], [Phone], [Address], [CityId], [Zip], [Email]) VALUES ('Ido', 'Eitach', '0583333333', 'Internet', 3, '166532', 'ido@gmail.com')
+INSERT INTO [dbo].[tblAccounts] ([AccountId], [Balance], [UserId], [UserName], [Password]) VALUES (1, 4550, N'1', N'Ido', N'123a')
+INSERT INTO [dbo].[tblAccounts] ([AccountId], [Balance], [UserId], [UserName], [Password]) VALUES (2, 350, N'2', N'EatPasta', N'13')
+INSERT INTO [dbo].[tblUsers] ([UserId], [FirstName], [LastName], [Phone], [Address], [CityId], [Zip], [Email]) VALUES (1, N'Ido', N'Eitach', N'0583333333', N'Internet', 3, N'166532', N'ido@gmail.com')
+INSERT INTO [dbo].[tblUsers] ([UserId], [FirstName], [LastName], [Phone], [Address], [CityId], [Zip], [Email]) VALUES (2, N'Eat', N'Pasta', N'054675757', N'internet', 3, N'12333', N'EatPasta@gmail.com')

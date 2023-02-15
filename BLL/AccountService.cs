@@ -19,10 +19,17 @@ namespace ShalevIdoBank.BLL
       service.Dispose();
       return res;
     }
-    static public DataTable GetTransactions(string accountUserName, string accountPassword)
+    static public bool ValidateUser(string accountUserName, string password)
     {
       var service = new AccountServiceDal();
-      if (!service.ValidateUser(accountUserName, accountPassword)) return null;
+      var res = service.ValidateUser(accountUserName, password);
+      service.Dispose();
+      return res;
+    }
+    static public DataTable GetTransactions(string accountUserName, string password)
+    {
+      var service = new AccountServiceDal();
+      if (!service.ValidateUser(accountUserName, password)) return null;
       int accountId = service.GetAccountIdByUserName(accountUserName);
 
       var res = service.GetTransactions(accountId);

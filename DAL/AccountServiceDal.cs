@@ -12,6 +12,7 @@ namespace ShalevIdoBank.DAL
   {
     private SqlConnection connection;
     private SqlTransaction transaction;
+    private Random random;
 
     // create public constructor
     public AccountServiceDal()
@@ -19,6 +20,7 @@ namespace ShalevIdoBank.DAL
       this.connection = new SqlConnection(Database.connectionString);
       this.connection.Open();
       this.transaction = null;
+      this.random = new Random();
     }
 
     public void Dispose()
@@ -91,12 +93,21 @@ namespace ShalevIdoBank.DAL
 
     }
 
+    private string RandomDigits(int length)
+    {
+      string s = string.Empty;
+      for (int i = 0; i < length; i++)
+        s = String.Concat(s, this.random.Next(10).ToString());
+      return s;
+    }
+
     public void InsertTransaction(float amount, string description, int payingAccountId, int payeeAccountId)
     {
       SqlCommand cmd = new SqlCommand("spInsertTransaction", connection, transaction);
       cmd.Parameters.Add("@date", SqlDbType.NVarChar).Value = DateTime.Now.ToString();
       cmd.Parameters.Add("@amount", SqlDbType.Float).Value = amount;
       cmd.Parameters.Add("@description", SqlDbType.NVarChar).Value = description;
+      cmd.Parameters.Add("@checkNumber", SqlDbType.NVarChar).Value = RandomDigits(10);
       cmd.Parameters.Add("@payingAccountId", SqlDbType.Int).Value = payingAccountId;
       cmd.Parameters.Add("@payeeAccountId", SqlDbType.Int).Value = payeeAccountId;
       cmd.CommandType = CommandType.StoredProcedure;
