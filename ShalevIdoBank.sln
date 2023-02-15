@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShalevIdoBank", "ShalevIdoB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsFrontend", "FormsFrontend\FormsFrontend.csproj", "{D52DA8BC-EEAD-4FE7-9753-47832C42BFBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShaIdo", "..\ShaIdo\ShaIdo.csproj", "{71A5957D-21F5-40E0-9B68-E9AD87C8ABE7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShaIdo", "ShaIdo\ShaIdo.csproj", "{71A5957D-21F5-40E0-9B68-E9AD87C8ABE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
