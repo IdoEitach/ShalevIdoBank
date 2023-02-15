@@ -24,10 +24,10 @@ namespace ShalevIdoBank
             return BLL.AccountService.GetBalance(accountId);
         }
 
-        [WebMethod]
-        public DataTable GetTransactions(int accountId)
-        {
-            return BLL.AccountService.GetTransactions(accountId);
-        }
+        // [WebMethod]
+        // public DataTable GetTransactions(int accountId)
+        // {
+        //     return BLL.AccountService.GetTransactions(accountId);
+        // }
     }
 }

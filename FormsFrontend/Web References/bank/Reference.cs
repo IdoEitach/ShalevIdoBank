@@ -20,6 +20,7 @@ namespace FormsFrontend.bank {
     using System.Web.Services.Protocols;
     using System.Xml.Serialization;
     using System.ComponentModel;
+    using System.Data;
     
     
     /// <remarks/>
@@ -30,6 +31,8 @@ namespace FormsFrontend.bank {
     public partial class ClientBankService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
         private System.Threading.SendOrPostCallback PayThatBillOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetTransactionsOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -73,6 +76,9 @@ namespace FormsFrontend.bank {
         public event PayThatBillCompletedEventHandler PayThatBillCompleted;
         
         /// <remarks/>
+        public event GetTransactionsCompletedEventHandler GetTransactionsCompleted;
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/PayThatBill", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public bool PayThatBill(float amount, string description, string payingUserName, string payingPassword, string payeeUserName) {
             object[] results = this.Invoke("PayThatBill", new object[] {
@@ -106,6 +112,37 @@ namespace FormsFrontend.bank {
             if ((this.PayThatBillCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.PayThatBillCompleted(this, new PayThatBillCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetTransactions", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataTable GetTransactions(string accountUserName, string accountPassword) {
+            object[] results = this.Invoke("GetTransactions", new object[] {
+                        accountUserName,
+                        accountPassword});
+            return ((System.Data.DataTable)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetTransactionsAsync(string accountUserName, string accountPassword) {
+            this.GetTransactionsAsync(accountUserName, accountPassword, null);
+        }
+        
+        /// <remarks/>
+        public void GetTransactionsAsync(string accountUserName, string accountPassword, object userState) {
+            if ((this.GetTransactionsOperationCompleted == null)) {
+                this.GetTransactionsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetTransactionsOperationCompleted);
+            }
+            this.InvokeAsync("GetTransactions", new object[] {
+                        accountUserName,
+                        accountPassword}, this.GetTransactionsOperationCompleted, userState);
+        }
+        
+        private void OnGetTransactionsOperationCompleted(object arg) {
+            if ((this.GetTransactionsCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetTransactionsCompleted(this, new GetTransactionsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -150,6 +187,32 @@ namespace FormsFrontend.bank {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void GetTransactionsCompletedEventHandler(object sender, GetTransactionsCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetTransactionsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetTransactionsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataTable Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataTable)(this.results[0]));
             }
         }
     }

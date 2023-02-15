@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Runtime;
 using System.Web;
@@ -29,4 +30,11 @@ namespace ShalevIdoBank
             return BLL.AccountService.ValidateUser(username, password);
         }
     }
+
+    [WebMethod]
+    public DataTable GetTransactions(string accountUserName, string accountPassword)
+    {
+      return BLL.AccountService.GetTransactions(accountUserName, accountPassword);
+    }
+  }
 }

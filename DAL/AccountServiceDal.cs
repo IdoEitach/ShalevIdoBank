@@ -63,6 +63,24 @@ namespace ShalevIdoBank.DAL
       int res = (int)cmd.ExecuteScalar();
       return res;
     }
+    public Dictionary<int, string> GetAllAccountUsernames()
+    {
+      DataTable dataTable = new DataTable();
+      SqlCommand cmd = new SqlCommand("spGetAllAccountUsernames", connection, transaction);
+      cmd.CommandType = CommandType.StoredProcedure;
+      SqlDataReader reader = cmd.ExecuteReader();
+      //load the data table
+      dataTable.Load(reader);
+      Dictionary<int, string> idsUsernames = new Dictionary<int, string>();
+      
+      for (int i = 0; i < dataTable.Rows.Count; i++)
+      {
+         idsUsernames.Add((int)dataTable.Rows[i][0], dataTable.Rows[i][1] as string);
+      }
+
+      return idsUsernames;
+    }
+
     public void UpdateBalance(int accountId, float newBalance)
     {
       SqlCommand cmd = new SqlCommand("spUpdateBalance", connection, transaction);
@@ -88,14 +106,32 @@ namespace ShalevIdoBank.DAL
 
     public DataTable GetTransactions(int accountId)
     {
+      Dictionary<int, string> idsUsernames = GetAllAccountUsernames();
       DataTable dataTable = new DataTable();
       SqlCommand cmd = new SqlCommand("spGetTransactions", connection, transaction);
-      cmd.Parameters.Add("@payingAccountId", SqlDbType.Int).Value = accountId;
+      cmd.Parameters.Add("@accountId", SqlDbType.Int).Value = accountId;
       cmd.CommandType = CommandType.StoredProcedure;
       SqlDataReader reader = cmd.ExecuteReader();
       //load the data table
       dataTable.Load(reader);
-      return dataTable;
+
+      DataTable dtCloned = dataTable.Clone();
+      dtCloned.Columns[5].DataType = typeof(string);
+      dtCloned.Columns[6].DataType = typeof(string);
+      dtCloned.Columns[5].ColumnName = "Paying Account";
+      dtCloned.Columns[6].ColumnName = "Payee Account";
+      for (int i = 0; i < dataTable.Rows.Count; i++)
+      {
+        // row[5] = idsUsernames[(int)row[5]];
+        // row[6] = idsUsernames[(int)row[6]];
+
+
+        dtCloned.ImportRow(dataTable.Rows[i]);
+        dtCloned.Rows[i][5] = idsUsernames[(int)dataTable.Rows[i][5]];
+        dtCloned.Rows[i][6] = idsUsernames[(int)dataTable.Rows[i][6]];
+      }
+
+      return dtCloned;
     }
 
     public bool PayThatBill(float amount, string description, int payingAccountId, int payeeAccountId)
