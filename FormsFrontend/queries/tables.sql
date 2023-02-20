@@ -8,6 +8,12 @@ CREATE TABLE [dbo].[Workers]
 )
 
 
+-- Examples
+SET IDENTITY_INSERT [dbo].[Workers] ON
+INSERT INTO [dbo].[Workers] ([Id], [Username], [Password]) VALUES (1, N'Worker', N'111')
+SET IDENTITY_INSERT [dbo].[Workers] OFF
+
+
 -- Stored Procedures
 go--at
 DROP PROCEDURE [dbo].[spValidLogin]
@@ -19,6 +25,3 @@ AS
 	SELECT * FROM Workers WHERE Username = @username AND Password = @password
 RETURN 0
 
-
--- Examples
-INSERT INTO [dbo].[Workers] ([Id], [Username], [Password]) VALUES (1, N'Worker', N'111')

@@ -39,6 +39,7 @@ namespace FormsFrontend
       bool succeed = service.PayThatBill(float.Parse(txtbox_amount.Text), txtbox_description.Text, txtbox_acc_username.Text, txtbox_acc_password.Text, storeAccountUserName);
       if (succeed)
       {
+        grd_transactions.DataSource = service.GetTransactions(storeAccountUserName, storeAccountPassword);
         MessageBox.Show("Success!", "Transaction", MessageBoxButtons.OK, MessageBoxIcon.Information);
       }
       else

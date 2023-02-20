@@ -74,6 +74,7 @@
       <DependentUpon>Banking.mdf</DependentUpon>
     </Content>
     <Content Include="queries\tables.sql" />
+    <Content Include="queries\test.txt" />
     <Content Include="TestAccountService.aspx" />
     <Content Include="Web.config" />
     <Content Include="BankService.asmx" />
