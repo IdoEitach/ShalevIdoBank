@@ -1,0 +1,82 @@
+﻿body {
+    font-family: 'Segoe UI';
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+}
+
+* {
+    outline: none;
+}
+
+.bold-label {
+    font-weight: bold;
+    font-size: 18px;
+    width: 100%;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+table {
+    filter: drop-shadow(0 0 5px lightgrey);
+    margin: 20px;
+    background: white;
+}
+
+td, th {
+    padding: 5px;
+}
+
+.button {
+    padding: 8px 16px;
+    margin: 16px;
+    border-color: gray;
+    border-style: double;
+    background-color: white;
+    border-radius: 4px;
+    filter: drop-shadow(0 0 5px lightgrey);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.button-darkshadow {
+    filter: drop-shadow(0 0 5px black);
+    border-color: black;
+    background-color: red;
+}
+
+.txtbox {
+    background-color: white;
+    background-position: 0px 0px;
+    background-repeat: no-repeat;
+    padding: 5px;
+    border-radius: 4px;
+    height: 30px;
+    border-color: gray;
+    border-style: double;
+    font-size: 16px;
+    filter: drop-shadow(0 0 5px lightgrey);
+    width: 100%;
+}
+
+
+.txtbox-password {
+    background-image: url('assets/password.svg');
+    background-size: 35px;
+    background-position: 0px 3px;
+    margin-left: 40px;
+    padding-left: 40px;
+}
+
+.txtbox-user {
+    background-image: url('assets/user.svg');
+    margin-left: 40px;
+    padding-left: 40px;
+}
+
+.txtbox-search {
+    background-image: url('assets/search.svg');
+}

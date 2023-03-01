@@ -8,19 +8,20 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <div>
-                <asp:Label ID="lbl_username" runat="server" Text="username"></asp:Label>
-            </div>
-            <asp:TextBox ID="txtbox_username" runat="server"></asp:TextBox>
-        </div>
-        <div>
-            <div>
-                <asp:Label ID="lbl_password" runat="server" Text="password"></asp:Label>
-            </div>
-            <asp:TextBox ID="txtbox_password" runat="server"></asp:TextBox>
-            <asp:Button runat="server" Text="login" OnClick="btn_login"></asp:Button>
-
+        <div style="
+            display: flex;
+            flex-direction: column;
+            width: 350px;
+            justify-content: center;
+            align-items: center;
+            margin: 40px;
+            ">
+            <asp:Label CssClass="bold-label" ID="lbl_username" runat="server" Text="Username"></asp:Label>
+            <asp:TextBox CssClass="txtbox txtbox-user" ID="txtbox_username" runat="server"></asp:TextBox>
+            <br />
+            <asp:Label CssClass="bold-label" ID="lbl_password" runat="server" Text="Password" ></asp:Label>
+            <asp:TextBox CssClass="txtbox txtbox-password" ID="txtbox_password" runat="server" TextMode="Password"></asp:TextBox>
+            <asp:Button CssClass="button" runat="server" Text="login" OnClick="btn_login"></asp:Button>
         </div>
     </form>
 </body>

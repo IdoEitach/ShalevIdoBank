@@ -64,7 +64,9 @@ CREATE PROCEDURE [dbo].[spValidateUser]
 	@UserName NVARCHAR(50),
 	@Password NVARCHAR(50)
 AS
-	Select * FROM tblAccounts Where UserName = @UserName And Password = @Password
+	Select * FROM tblAccounts
+	Where UserName = @UserName COLLATE SQL_Latin1_General_CP1_CS_AS
+	And Password = @Password COLLATE SQL_Latin1_General_CP1_CS_AS
 RETURN 0
 
 
