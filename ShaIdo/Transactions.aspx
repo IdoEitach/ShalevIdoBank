@@ -24,4 +24,4 @@
         <asp:GridView ID="grd_transactions" runat="server" Width="100%" Height="100%" CssClass="auto-style1" OnSelectedIndexChanged="grdTransactions_SelectedIndexChanged">
         </asp:GridView>
     </div>
-    </asp:Content>
+</asp:Content>

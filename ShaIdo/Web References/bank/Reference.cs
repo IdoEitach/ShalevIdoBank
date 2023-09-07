@@ -14,17 +14,17 @@
 #pragma warning disable 1591
 
 namespace ShaIdo.bank {
-    using System;
-    using System.Web.Services;
     using System.Diagnostics;
-    using System.Web.Services.Protocols;
+    using System;
     using System.Xml.Serialization;
     using System.ComponentModel;
+    using System.Web.Services.Protocols;
+    using System.Web.Services;
     using System.Data;
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="ClientBankServiceSoap", Namespace="http://tempuri.org/")]
@@ -35,6 +35,8 @@ namespace ShaIdo.bank {
         private System.Threading.SendOrPostCallback ValidLoginOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetTransactionsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback RetrieveBalanceOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -82,6 +84,9 @@ namespace ShaIdo.bank {
         
         /// <remarks/>
         public event GetTransactionsCompletedEventHandler GetTransactionsCompleted;
+        
+        /// <remarks/>
+        public event RetrieveBalanceCompletedEventHandler RetrieveBalanceCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/PayThatBill", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -183,6 +188,38 @@ namespace ShaIdo.bank {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/RetrieveBalance", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> RetrieveBalance(string accountUserName, string accountPassword) {
+            object[] results = this.Invoke("RetrieveBalance", new object[] {
+                        accountUserName,
+                        accountPassword});
+            return ((System.Nullable<double>)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void RetrieveBalanceAsync(string accountUserName, string accountPassword) {
+            this.RetrieveBalanceAsync(accountUserName, accountPassword, null);
+        }
+        
+        /// <remarks/>
+        public void RetrieveBalanceAsync(string accountUserName, string accountPassword, object userState) {
+            if ((this.RetrieveBalanceOperationCompleted == null)) {
+                this.RetrieveBalanceOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRetrieveBalanceOperationCompleted);
+            }
+            this.InvokeAsync("RetrieveBalance", new object[] {
+                        accountUserName,
+                        accountPassword}, this.RetrieveBalanceOperationCompleted, userState);
+        }
+        
+        private void OnRetrieveBalanceOperationCompleted(object arg) {
+            if ((this.RetrieveBalanceCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.RetrieveBalanceCompleted(this, new RetrieveBalanceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -202,11 +239,11 @@ namespace ShaIdo.bank {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void PayThatBillCompletedEventHandler(object sender, PayThatBillCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PayThatBillCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -228,11 +265,11 @@ namespace ShaIdo.bank {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ValidLoginCompletedEventHandler(object sender, ValidLoginCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ValidLoginCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -254,11 +291,11 @@ namespace ShaIdo.bank {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void GetTransactionsCompletedEventHandler(object sender, GetTransactionsCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class GetTransactionsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -275,6 +312,32 @@ namespace ShaIdo.bank {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((System.Data.DataTable)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void RetrieveBalanceCompletedEventHandler(object sender, RetrieveBalanceCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class RetrieveBalanceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal RetrieveBalanceCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Nullable<double> Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Nullable<double>)(this.results[0]));
             }
         }
     }

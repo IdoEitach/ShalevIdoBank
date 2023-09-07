@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using System.Web;
+using System.Web.Services.Description;
 
 namespace ShalevIdoBank.BLL
 {
@@ -18,6 +19,17 @@ namespace ShalevIdoBank.BLL
       var res = service.GetBalance(accountId);
       service.Dispose();
       return res;
+    }
+    static public double? GetBalance(string accountUserName, string password)
+    {
+        if (!AccountService.ValidateUser(accountUserName, password)) return 0;
+        var service = new AccountServiceDal();
+
+        if (!service.ValidateUser(accountUserName, password)) return null;
+        int accountId = service.GetAccountIdByUserName(accountUserName);
+        var res = service.GetBalance(accountId);
+        service.Dispose();
+        return res;
     }
     static public bool ValidateUser(string accountUserName, string password)
     {

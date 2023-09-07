@@ -9,6 +9,10 @@
     outline: none;
 }
 
+th {
+    background-color: lightgrey;
+}
+
 .bold-label {
     font-weight: bold;
     font-size: 18px;

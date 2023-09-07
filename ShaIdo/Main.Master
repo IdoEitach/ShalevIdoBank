@@ -13,14 +13,16 @@
     <form id="form1" runat="server">
         <div>
             <div style="
-                width: 100%;
+                width: calc(100%-20px);
                 height: 70px;
-                background-color: darkcyan;
+                background-color: dimgrey;
                 filter: drop-shadow(0 0 5px grey);
                 margin-bottom: 15px;
                 display: flex;
+                justify-content: space-between;
                 flex-direction: row;
                 padding: 0px 20px;
+                margin: 20px;
             ">
                 <div style="
                     color: white;
@@ -29,11 +31,11 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                ">1000₪</div>
+                "><%=Session["amount"] %></div>
                 <asp:Button CssClass="button button-darkshadow" OnClick="SignOut_Click" runat="server" Text="Sign Out"></asp:Button>
             </div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
         </div>
     </form>
 </body>

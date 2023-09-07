@@ -13,7 +13,9 @@ namespace ShaIdo
 
     protected void Page_Load(object sender, EventArgs e)
     {
-      grd_transactions.DataSource = service.GetTransactions("Ido", "123a");
+      if (Session["user"] == null || Session["user"] == "") Response.Redirect("Login.aspx");
+      if (Session["pass"] == null || Session["pass"] == "") Response.Redirect("Login.aspx");
+      grd_transactions.DataSource = service.GetTransactions(Session["user"] as string, Session["pass"] as string);
       grd_transactions.DataBind();
     }
 

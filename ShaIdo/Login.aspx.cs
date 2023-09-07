@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace ShaIdo
 {
-    public partial class Login : System.Web.UI.Page
+    public partial class Login2 : System.Web.UI.Page
     {
         private bank.ClientBankService service = new bank.ClientBankService();
         protected void Page_Load(object sender, EventArgs e)
@@ -25,8 +25,9 @@ namespace ShaIdo
             bool succecd = service.ValidLogin(username, password);
             if (succecd)
             {
-                Response.Redirect("Transactions.aspx");
                 Session["user"] = username;
+                Session["pass"] = password;
+                Response.Redirect("Transactions.aspx");
             }
             else
             {
