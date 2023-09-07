@@ -48,8 +48,6 @@ td, th {
 
 .button-darkshadow {
     filter: drop-shadow(0 0 5px black);
-    border-color: black;
-    background-color: red;
 }
 
 .txtbox {

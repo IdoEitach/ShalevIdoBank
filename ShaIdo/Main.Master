@@ -32,7 +32,10 @@
                     justify-content: center;
                     align-items: center;
                 "><%=Session["amount"] %></div>
-                <asp:Button CssClass="button button-darkshadow" OnClick="SignOut_Click" runat="server" Text="Sign Out"></asp:Button>
+                
+                <div style="display: <%= (Session["user"] == null || Session["user"] == "" ? "none" : "initial")%>">
+                    <asp:Button CssClass="button button-darkshadow" OnClick="SignOut_Click" runat="server" Text="Sign Out"></asp:Button>
+                </div>
             </div>
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
