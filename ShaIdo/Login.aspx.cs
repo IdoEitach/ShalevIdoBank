@@ -14,7 +14,7 @@ namespace ShaIdo
         private bank.ClientBankService service = new bank.ClientBankService();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Session["error_login"] = "";
         }
 
         protected void btn_login(object sender, EventArgs e)
@@ -25,7 +25,12 @@ namespace ShaIdo
             bool succecd = service.ValidLogin(username, password);
             if (succecd)
             {
-                Response.Write("good");
+                Response.Redirect("Transactions.aspx");
+                Session["user"] = username;
+            }
+            else
+            {
+                Session["error_login"] = "Username or password incorrect.";
             }
         }
     }

@@ -11,9 +11,9 @@
         <div style="
             display: flex;
             flex-direction: column;
-            width: 350px;
+            width: 100%; 
             justify-content: center;
-            align-items: center;
+            align-items: center; 
             margin: 40px;
             ">
             <asp:Label CssClass="bold-label" ID="lbl_username" runat="server" Text="Username"></asp:Label>
@@ -22,6 +22,7 @@
             <asp:Label CssClass="bold-label" ID="lbl_password" runat="server" Text="Password" ></asp:Label>
             <asp:TextBox CssClass="txtbox txtbox-password" ID="txtbox_password" runat="server" TextMode="Password"></asp:TextBox>
             <asp:Button CssClass="button" runat="server" Text="login" OnClick="btn_login"></asp:Button>
+            <label style="color: red;"><%=Session["error_login"] %></label>
         </div>
     </form>
 </body>
