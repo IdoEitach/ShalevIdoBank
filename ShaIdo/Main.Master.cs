@@ -13,5 +13,11 @@ namespace ShaIdo
     {
 
     }
+
+    protected void SignOut_Click(object sender, EventArgs e)
+    {
+      Session["user"] = "";
+      Response.Redirect("login.aspx");
+    }
   }
 }
