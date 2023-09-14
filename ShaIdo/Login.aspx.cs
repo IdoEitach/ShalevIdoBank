@@ -14,6 +14,7 @@ namespace ShaIdo
         private bank.ClientBankService service = new bank.ClientBankService();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["user"] != null && Session["user"] != "") Response.Redirect("Transactions.aspx");
             Session["error_login"] = "";
         }
 
@@ -21,7 +22,7 @@ namespace ShaIdo
         {
             string username = txtbox_username.Text;
             string password = txtbox_password.Text;
-
+            System.Net.ServicePointManager.ServerCertificateValidationCallback = (senderX, certificate, chain, sslPolicyErrors) => { return true; };
             bool succecd = service.ValidLogin(username, password);
             if (succecd)
             {

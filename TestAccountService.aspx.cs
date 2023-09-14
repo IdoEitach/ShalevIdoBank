@@ -13,6 +13,8 @@ namespace ShalevIdoBank
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            ClientBankService ser = new ClientBankService();
+            bool b = ser.ValidLogin("Ido", "123a");
             // Testing PayThatBill + GetBalance
             Response.Write("Before running \"PayThatBill\" on Account 1. Current amount: " + AccountService.GetBalance(1).ToString() + "<br/>");
             // AccountService.PayThatBill(1, "Ido", 122.15f);
