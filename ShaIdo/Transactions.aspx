@@ -4,6 +4,10 @@
         .auto-style1 {
             margin-left: 0px;
         }
+        .export{
+            text-align:center;
+            
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -24,4 +28,8 @@
         <asp:GridView ID="grd_transactions" runat="server" Width="100%" Height="100%" CssClass="auto-style1" OnSelectedIndexChanged="grdTransactions_SelectedIndexChanged">
         </asp:GridView>
     </div>
+    <div class="export">
+        <asp:Button ID="Button1" CssClass="button"  runat="server" Text="Button" />
+    </div>
 </asp:Content>
+    
