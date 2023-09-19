@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -16,19 +17,27 @@ namespace ShaIdo
         {
             if (Session["user"] == null || Session["user"] == "") Response.Redirect("Login.aspx");
             if (Session["pass"] == null || Session["pass"] == "") Response.Redirect("Login.aspx");
-            DataTable dt = service.GetTransactions(Session["user"] as string, Session["pass"] as string);
 
-            grd_transactions.DataSource = dt;
-            grd_transactions.DataBind();
+            if (!IsPostBack)
+            {
+                DataTable dt = service.GetTransactions(Session["user"] as string, Session["pass"] as string);
+                grd_transactions.EditIndex = -1;
+
+                grd_transactions.DataSource = dt;
+                grd_transactions.DataBind();
+            }
+                
         }
 
         protected void ToCSV_Click(object sender, EventArgs e)
         {
+            DataTable dt = service.GetTransactions(Session["user"] as string, Session["pass"] as string);
+
             Response.ClearContent();
             Response.Clear();
             Response.ContentType = "text/plain";
             Response.AddHeader("Content-Disposition", "attachment; filename=" + "Transactions.csv" + ";");
-            Response.Write(((DataTable)grd_transactions.DataSource).ToCSV());
+            Response.Write(dt.ToCSV());
             Response.Flush();
             Response.End();
         }
@@ -51,6 +60,44 @@ namespace ShaIdo
 
             dt = rows.Any() ? rows.CopyToDataTable() : dt.Clone();
  
+            grd_transactions.DataSource = dt;
+            grd_transactions.DataBind();
+        }
+
+        protected void grd_transactions_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            grd_transactions.EditIndex = e.NewEditIndex;
+            DataTable dt = service.GetTransactions(Session["user"] as string, Session["pass"] as string);
+            grd_transactions.DataSource = dt;
+            //grd_transactions.DataSource = dt;
+
+            grd_transactions.DataBind();
+
+        }
+
+        protected void grd_transactions_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+
+            GridViewRow gvr = grd_transactions.Rows[e.RowIndex];
+            service.ChangeTransactionDescription(Session["user"] as string, Session["pass"] as string, int.Parse(gvr.Cells[1].Text), e.NewValues["Description"] as string);
+
+            DataTable dt = service.GetTransactions(Session["user"] as string, Session["pass"] as string);
+
+            grd_transactions.EditIndex = -1;
+            grd_transactions.DataSource = dt;
+            grd_transactions.DataBind();
+
+        }
+
+        protected void grd_transactions_RowUpdated(object sender, GridViewUpdatedEventArgs e)
+        {
+        }
+
+        protected void grd_transactions_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            DataTable dt = service.GetTransactions(Session["user"] as string, Session["pass"] as string);
+
+            grd_transactions.EditIndex = -1;
             grd_transactions.DataSource = dt;
             grd_transactions.DataBind();
         }

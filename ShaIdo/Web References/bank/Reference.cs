@@ -36,6 +36,8 @@ namespace ShaIdo.bank {
         
         private System.Threading.SendOrPostCallback GetTransactionsOperationCompleted;
         
+        private System.Threading.SendOrPostCallback ChangeTransactionDescriptionOperationCompleted;
+        
         private System.Threading.SendOrPostCallback RetrieveBalanceOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
@@ -84,6 +86,9 @@ namespace ShaIdo.bank {
         
         /// <remarks/>
         public event GetTransactionsCompletedEventHandler GetTransactionsCompleted;
+        
+        /// <remarks/>
+        public event ChangeTransactionDescriptionCompletedEventHandler ChangeTransactionDescriptionCompleted;
         
         /// <remarks/>
         public event RetrieveBalanceCompletedEventHandler RetrieveBalanceCompleted;
@@ -184,6 +189,40 @@ namespace ShaIdo.bank {
             if ((this.GetTransactionsCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetTransactionsCompleted(this, new GetTransactionsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ChangeTransactionDescription", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void ChangeTransactionDescription(string accountUserName, string accountPassword, int transactionId, string newDescription) {
+            this.Invoke("ChangeTransactionDescription", new object[] {
+                        accountUserName,
+                        accountPassword,
+                        transactionId,
+                        newDescription});
+        }
+        
+        /// <remarks/>
+        public void ChangeTransactionDescriptionAsync(string accountUserName, string accountPassword, int transactionId, string newDescription) {
+            this.ChangeTransactionDescriptionAsync(accountUserName, accountPassword, transactionId, newDescription, null);
+        }
+        
+        /// <remarks/>
+        public void ChangeTransactionDescriptionAsync(string accountUserName, string accountPassword, int transactionId, string newDescription, object userState) {
+            if ((this.ChangeTransactionDescriptionOperationCompleted == null)) {
+                this.ChangeTransactionDescriptionOperationCompleted = new System.Threading.SendOrPostCallback(this.OnChangeTransactionDescriptionOperationCompleted);
+            }
+            this.InvokeAsync("ChangeTransactionDescription", new object[] {
+                        accountUserName,
+                        accountPassword,
+                        transactionId,
+                        newDescription}, this.ChangeTransactionDescriptionOperationCompleted, userState);
+        }
+        
+        private void OnChangeTransactionDescriptionOperationCompleted(object arg) {
+            if ((this.ChangeTransactionDescriptionCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ChangeTransactionDescriptionCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -315,6 +354,10 @@ namespace ShaIdo.bank {
             }
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void ChangeTransactionDescriptionCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]

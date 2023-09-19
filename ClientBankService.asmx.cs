@@ -34,6 +34,11 @@ namespace ShalevIdoBank
       return BLL.AccountService.GetTransactions(accountUserName, accountPassword);
     }
     [WebMethod]
+    public void ChangeTransactionDescription(string accountUserName, string accountPassword, int transactionId, string newDescription)
+    {
+        BLL.AccountService.ChangeTransactionDescription(accountUserName, accountPassword, transactionId, newDescription);
+    }
+    [WebMethod]
     public double? RetrieveBalance(string accountUserName, string accountPassword)
     {
         return BLL.AccountService.GetBalance(accountUserName, accountPassword);

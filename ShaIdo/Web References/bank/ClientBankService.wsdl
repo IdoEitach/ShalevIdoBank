@@ -57,6 +57,19 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="ChangeTransactionDescription">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="accountUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="accountPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="transactionId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="newDescription" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeTransactionDescriptionResponse">
+        <s:complexType />
+      </s:element>
       <s:element name="RetrieveBalance">
         <s:complexType>
           <s:sequence>
@@ -92,6 +105,12 @@
   <wsdl:message name="GetTransactionsSoapOut">
     <wsdl:part name="parameters" element="tns:GetTransactionsResponse" />
   </wsdl:message>
+  <wsdl:message name="ChangeTransactionDescriptionSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeTransactionDescription" />
+  </wsdl:message>
+  <wsdl:message name="ChangeTransactionDescriptionSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeTransactionDescriptionResponse" />
+  </wsdl:message>
   <wsdl:message name="RetrieveBalanceSoapIn">
     <wsdl:part name="parameters" element="tns:RetrieveBalance" />
   </wsdl:message>
@@ -110,6 +129,10 @@
     <wsdl:operation name="GetTransactions">
       <wsdl:input message="tns:GetTransactionsSoapIn" />
       <wsdl:output message="tns:GetTransactionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeTransactionDescription">
+      <wsdl:input message="tns:ChangeTransactionDescriptionSoapIn" />
+      <wsdl:output message="tns:ChangeTransactionDescriptionSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="RetrieveBalance">
       <wsdl:input message="tns:RetrieveBalanceSoapIn" />
@@ -138,6 +161,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetTransactions">
       <soap:operation soapAction="http://tempuri.org/GetTransactions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeTransactionDescription">
+      <soap:operation soapAction="http://tempuri.org/ChangeTransactionDescription" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -177,6 +209,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetTransactions">
       <soap12:operation soapAction="http://tempuri.org/GetTransactions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeTransactionDescription">
+      <soap12:operation soapAction="http://tempuri.org/ChangeTransactionDescription" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

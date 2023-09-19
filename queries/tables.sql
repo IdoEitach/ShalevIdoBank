@@ -154,3 +154,13 @@ CREATE PROCEDURE [dbo].[spGetAccountEmail]
 AS
 	Select Email FROM tblUsers Where UserId = (Select UserId FROM tblAccounts Where AccountId = @accountId)
 RETURN 0
+
+go--at
+DROP PROCEDURE [dbo].[spChangeDescription]
+go--at
+CREATE PROCEDURE [dbo].[spChangeDescription]
+	@transactionId int,
+	@newDescription Nvarchar(50)
+AS
+ 	Update tblTransactions Set Description = @newDescription where TransactionId=@transactionId;
+RETURN 0

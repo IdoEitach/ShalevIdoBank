@@ -32,7 +32,13 @@ namespace FormsFrontend.bank {
         
         private System.Threading.SendOrPostCallback PayThatBillOperationCompleted;
         
+        private System.Threading.SendOrPostCallback ValidLoginOperationCompleted;
+        
         private System.Threading.SendOrPostCallback GetTransactionsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ChangeTransactionDescriptionOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback RetrieveBalanceOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -76,7 +82,16 @@ namespace FormsFrontend.bank {
         public event PayThatBillCompletedEventHandler PayThatBillCompleted;
         
         /// <remarks/>
+        public event ValidLoginCompletedEventHandler ValidLoginCompleted;
+        
+        /// <remarks/>
         public event GetTransactionsCompletedEventHandler GetTransactionsCompleted;
+        
+        /// <remarks/>
+        public event ChangeTransactionDescriptionCompletedEventHandler ChangeTransactionDescriptionCompleted;
+        
+        /// <remarks/>
+        public event RetrieveBalanceCompletedEventHandler RetrieveBalanceCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/PayThatBill", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -116,6 +131,37 @@ namespace FormsFrontend.bank {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ValidLogin", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool ValidLogin(string username, string password) {
+            object[] results = this.Invoke("ValidLogin", new object[] {
+                        username,
+                        password});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ValidLoginAsync(string username, string password) {
+            this.ValidLoginAsync(username, password, null);
+        }
+        
+        /// <remarks/>
+        public void ValidLoginAsync(string username, string password, object userState) {
+            if ((this.ValidLoginOperationCompleted == null)) {
+                this.ValidLoginOperationCompleted = new System.Threading.SendOrPostCallback(this.OnValidLoginOperationCompleted);
+            }
+            this.InvokeAsync("ValidLogin", new object[] {
+                        username,
+                        password}, this.ValidLoginOperationCompleted, userState);
+        }
+        
+        private void OnValidLoginOperationCompleted(object arg) {
+            if ((this.ValidLoginCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ValidLoginCompleted(this, new ValidLoginCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetTransactions", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public System.Data.DataTable GetTransactions(string accountUserName, string accountPassword) {
             object[] results = this.Invoke("GetTransactions", new object[] {
@@ -143,6 +189,72 @@ namespace FormsFrontend.bank {
             if ((this.GetTransactionsCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetTransactionsCompleted(this, new GetTransactionsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ChangeTransactionDescription", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void ChangeTransactionDescription(string accountUserName, string accountPassword, int transactionId, string newDescription) {
+            this.Invoke("ChangeTransactionDescription", new object[] {
+                        accountUserName,
+                        accountPassword,
+                        transactionId,
+                        newDescription});
+        }
+        
+        /// <remarks/>
+        public void ChangeTransactionDescriptionAsync(string accountUserName, string accountPassword, int transactionId, string newDescription) {
+            this.ChangeTransactionDescriptionAsync(accountUserName, accountPassword, transactionId, newDescription, null);
+        }
+        
+        /// <remarks/>
+        public void ChangeTransactionDescriptionAsync(string accountUserName, string accountPassword, int transactionId, string newDescription, object userState) {
+            if ((this.ChangeTransactionDescriptionOperationCompleted == null)) {
+                this.ChangeTransactionDescriptionOperationCompleted = new System.Threading.SendOrPostCallback(this.OnChangeTransactionDescriptionOperationCompleted);
+            }
+            this.InvokeAsync("ChangeTransactionDescription", new object[] {
+                        accountUserName,
+                        accountPassword,
+                        transactionId,
+                        newDescription}, this.ChangeTransactionDescriptionOperationCompleted, userState);
+        }
+        
+        private void OnChangeTransactionDescriptionOperationCompleted(object arg) {
+            if ((this.ChangeTransactionDescriptionCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ChangeTransactionDescriptionCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/RetrieveBalance", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<double> RetrieveBalance(string accountUserName, string accountPassword) {
+            object[] results = this.Invoke("RetrieveBalance", new object[] {
+                        accountUserName,
+                        accountPassword});
+            return ((System.Nullable<double>)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void RetrieveBalanceAsync(string accountUserName, string accountPassword) {
+            this.RetrieveBalanceAsync(accountUserName, accountPassword, null);
+        }
+        
+        /// <remarks/>
+        public void RetrieveBalanceAsync(string accountUserName, string accountPassword, object userState) {
+            if ((this.RetrieveBalanceOperationCompleted == null)) {
+                this.RetrieveBalanceOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRetrieveBalanceOperationCompleted);
+            }
+            this.InvokeAsync("RetrieveBalance", new object[] {
+                        accountUserName,
+                        accountPassword}, this.RetrieveBalanceOperationCompleted, userState);
+        }
+        
+        private void OnRetrieveBalanceOperationCompleted(object arg) {
+            if ((this.RetrieveBalanceCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.RetrieveBalanceCompleted(this, new RetrieveBalanceCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -193,6 +305,32 @@ namespace FormsFrontend.bank {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void ValidLoginCompletedEventHandler(object sender, ValidLoginCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ValidLoginCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ValidLoginCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void GetTransactionsCompletedEventHandler(object sender, GetTransactionsCompletedEventArgs e);
     
     /// <remarks/>
@@ -213,6 +351,36 @@ namespace FormsFrontend.bank {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((System.Data.DataTable)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void ChangeTransactionDescriptionCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void RetrieveBalanceCompletedEventHandler(object sender, RetrieveBalanceCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class RetrieveBalanceCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal RetrieveBalanceCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Nullable<double> Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Nullable<double>)(this.results[0]));
             }
         }
     }

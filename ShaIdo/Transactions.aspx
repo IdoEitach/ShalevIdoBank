@@ -5,9 +5,9 @@
         .auto-style1 {
             margin-left: 0px;
         }
-        .export{
-            text-align:center;
-            
+
+        .export {
+            text-align: center;
         }
     </style>
 </asp:Content>
@@ -28,11 +28,26 @@
 
 
     <div style="display: flex; width: 100%; height: 100%; justify-content: center;">
-        <asp:GridView ID="grd_transactions" runat="server" Width="100%" Height="100%" CssClass="auto-style1">
+        <asp:GridView ID="grd_transactions" runat="server" Width="100%" Height="100%" CssClass="auto-style1"
+            AutoGenerateColumns="false"
+            OnRowEditing="grd_transactions_RowEditing"
+            OnRowUpdating="grd_transactions_RowUpdating"
+            OnRowUpdated="grd_transactions_RowUpdated"
+            OnRowCancelingEdit="grd_transactions_RowCancelingEdit"
+            DataKeyNames="Description" 
+            AutoGenerateEditButton="true">
+            <Columns>
+                <%--<asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ShowSelectButton="True" />--%>
+                <%--<asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="True" SortExpression="ID" />--%>
+                <asp:BoundField DataField="TransactionId" HeaderText="Id" ReadOnly="true" SortExpression="TransactionId" />
+                <asp:BoundField DataField="DatePosted" HeaderText="Date Posted" ReadOnly="true" SortExpression="CheckNumber" />
+                <asp:BoundField DataField="Amount" HeaderText="Amount" ReadOnly="true" SortExpression="Amount" />
+                <asp:BoundField DataField="Description" HeaderText="Description" ReadOnly="false" SortExpression="Description" />
+                <asp:BoundField DataField="CheckNumber" HeaderText="Check Number" ReadOnly="true" SortExpression="CheckNumber" />
+                <asp:BoundField DataField="Paying Account" HeaderText="Paying Account" ReadOnly="true" SortExpression="Paying Account" />
+                <asp:BoundField DataField="Payee Account" HeaderText="Payee Account" ReadOnly="true" SortExpression="Payee Account" />
+            </Columns>
+
         </asp:GridView>
     </div>
-    <div class="export">
-        <asp:Button ID="Button1" CssClass="button"  runat="server" Text="Button" />
-    </div>
 </asp:Content>
-    
